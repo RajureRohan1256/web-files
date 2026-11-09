@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Safety &amp; Engineering Governance — Orains</title>
+    <meta name="description" content="Explore safety, engineering governance, validation gates, data isolation, and deployment security at Orains. Building Geometric Intelligence responsibly.">
+
+    <!-- Premium Typography: Instrument Sans for UI, JetBrains Mono for Technical Data -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* =====================================================================
+           1. CORE SYSTEM & VARIABLES (DARK MODE DEFAULT)
+           ===================================================================== */
+        :root {
+            --bg-base: #0a0a0a;
+            --bg-base-rgb: 10, 10, 10;
+            --bg-soft: #141414;
+            --bg-surface: #1e1e1e;
+
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+
+            --line: #2a2a2a;
+            --line-light: #1a1a1a;
+
+            --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --nav-height: 80px;
+            --subnav-height: 52px;
+        }
+
+        body.light-mode {
+            --bg-base: #ffffff;
+            --bg-base-rgb: 255, 255, 255;
+            --bg-soft: #fcfcfc;
+            --bg-surface: #f5f5f4;
+
+            --text-primary: #000000;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+
+            --line: #e5e5e5;
+            --line-light: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-sans);
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-base);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        /* =====================================================================
+           2. TYPOGRAPHY & SHARED UTILITIES
+           ===================================================================== */
+        .container {
+            width: min(1320px, calc(100% - 4rem));
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .label-sm {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        .headline-xl {
+            color: var(--text-primary);
+            font-size: clamp(2.4rem, 5vw, 4.6rem);
+            font-weight: 500;
+            letter-spacing: -0.04em;
+            line-height: 1.12;
+            margin-bottom: 1.5rem;
+        }
+
+        .headline-md {
+            color: var(--text-primary);
+            font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .headline-sm {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.8rem;
+        }
+
+        .body-lg {
+            color: var(--text-secondary);
+            font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+            font-weight: 400;
+            line-height: 1.65;
+            max-width: 780px;
+        }
+
+        .body-md {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .link-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding-bottom: 3px;
+            border-bottom: 1px solid var(--text-primary);
+            margin-top: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: var(--font-sans);
+        }
+
+        .link-cta:hover {
+            opacity: 0.6;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================================
+           3. PRIMARY NAVIGATION & SAFETY SUB-NAV
+           ===================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 100;
+            background: rgba(var(--bg-base-rgb), 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-container {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+        
+        .theme-toggle-btn:hover {
+            background-color: var(--line-light);
+        }
+
+        /* Sticky Safety Sub-Navigation */
+        .subnav-bar {
+            position: sticky;
+            top: var(--nav-height);
+            width: 100%;
+            height: var(--subnav-height);
+            z-index: 90;
+            background: rgba(var(--bg-base-rgb), 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line-light);
+        }
+
+        .subnav-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            height: 100%;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .subnav-container::-webkit-scrollbar { display: none; }
+
+        .subnav-link {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.4rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .subnav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .subnav-link.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--text-primary);
+        }
+
+        /* =====================================================================
+           4. TAB PANEL SWITCHING SYSTEM
+           ===================================================================== */
+        .tab-panel {
+            display: none;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: panelFadeIn 0.35s ease forwards;
+        }
+
+        @keyframes panelFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .safety-hero {
+            padding-top: calc(var(--nav-height) + 2.5rem);
+            padding-bottom: 6rem;
+            border-bottom: 1px solid var(--line-light);
+            background: radial-gradient(circle at 80% 20%, var(--bg-soft) 0%, var(--bg-base) 70%);
+        }
+
+        .section-block {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--line-light);
+        }
+
+        .tab-panel > .section-block:first-child:not(.safety-hero) {
+            padding-top: calc(var(--nav-height) + 2.5rem);
+        }
+
+        /* =====================================================================
+           5. SECTION & CARD COMPONENTS
+           ===================================================================== */
+        .cards-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-top: 3.5rem;
+        }
+
+        .cards-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        .cards-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .safety-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 2.4rem 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 280px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .safety-card:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-3px);
+        }
+
+        .badge-mono {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .card-tag-footer {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            border-top: 1px solid var(--line-light);
+            padding-top: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .pipeline-strip {
+            margin-top: 4rem;
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .pipeline-step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .pipeline-arrow {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .spec-list {
+            list-style: none;
+            margin-top: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.55rem;
+        }
+
+        .spec-list li {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .spec-list li::before {
+            content: "•";
+            color: var(--text-muted);
+        }
+
+        .statement-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .quote-lead {
+            font-size: 1.3rem;
+            line-height: 1.55;
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        .tier-pill-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-top: 2.5rem;
+        }
+
+        .tier-pill {
+            background: var(--bg-base);
+            border: 1px solid var(--line);
+            padding: 1.2rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .tier-pill strong {
+            color: var(--text-primary);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .tier-pill:hover {
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+        }
+
+        /* =====================================================================
+           6. FOOTER
+           ===================================================================== */
+        footer {
+            padding: 6rem 0 3rem;
+            background: var(--bg-base);
+            border-top: 1px solid var(--line);
+            font-size: 0.85rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .footer-brand {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .footer-brand + p {
+            margin-top: 0.5rem;
+            max-width: 220px;
+            color: var(--text-secondary);
+        }
+
+        .footer-email {
+            display: inline-block;
+            margin-top: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 2px;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 0.3rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            padding: 0.2rem 0;
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-muted);
+            border-top: 1px solid var(--line-light);
+            padding-top: 2rem;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .cards-grid-3, .cards-grid-4, .tier-pill-grid { grid-template-columns: repeat(2, 1fr); }
+            .cards-grid-2 { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .container { width: calc(100% - 2.5rem); }
+            .cards-grid-3, .cards-grid-4, .tier-pill-grid { grid-template-columns: 1fr; }
+            .pipeline-strip { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+            .statement-card { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Primary Navigation -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Orains</a>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="product">Product</a>
+                <a href="business">Business</a>
+                <a href="company">Company</a>
+                <a href="research">Research</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="business#contact-sales" class="nav-cta" style="font-size: 0.85rem;">Contact Sales</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-Navigation for Safety Sections -->
+    <nav class="subnav-bar" aria-label="Safety subsections">
+        <div class="container subnav-container">
+            <a href="#principles" class="subnav-link active">Safety Principles</a>
+            <a href="#deployment" class="subnav-link">Deployment Safety</a>
+            <a href="#security-privacy" class="subnav-link">Security &amp; Privacy</a>
+            <a href="#transparency" class="subnav-link">Trust &amp; Transparency</a>
+        </div>
+    </nav>
+
+    <main id="safety-tab-root">
+        <!-- =============================================================
+             1. TAB: SAFETY PRINCIPLES
+             ============================================================= -->
+        <div id="principles" class="tab-panel active">
+            <!-- Hero -->
+            <section class="safety-hero">
+                <div class="container">
+                    <span class="label-sm">SAFETY APPROACH &bull; Orains</span>
+                    <h1 class="headline-xl">Engineering Intelligence Requires Engineering Discipline</h1>
+                    <p class="body-lg">
+                        At Orains, safety is not an additional layer added after development — it is part of how we design and evaluate ORAIN. Engineering systems operate where incorrect geometry, misunderstood requirements, invalid assumptions, or unreliable outputs can have consequences beyond the software itself.
+                    </p>
+                    <div style="margin-top: 2rem;">
+                        <a href="#deployment" class="link-cta link-tab">Explore Deployment Validation Gates &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Six Core Principles Grid -->
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">CORE FOUNDATIONS</span>
+                    <h2 class="headline-md">Our Safety Principles</h2>
+                    <p class="body-lg">
+                        Our framework is built around validation, controlled execution, human oversight, and continuous evaluation across the entire engineering pipeline.
+                    </p>
+
+                    <div class="cards-grid-3">
+                        <!-- Principle 01 -->
+                        <div class="safety-card">
+                            <div>
+                                <span class="badge-mono">PRINCIPLE // 01</span>
+                                <h3 class="headline-sm">Reason Before Construction</h3>
+                                <p class="body-md">
+                                    ORAIN is designed around separating engineering reasoning from geometry construction. Proposed designs are evaluated for intent, constraints, and physical feasibility before being translated into executable geometric operations.
+                                </p>
+                            </div>
+                            <div class="card-tag-footer">ERE REASONING KERNEL</div>
+                        </div>
+
+                        <!-- Principle 02 -->
+                        <div class="safety-card">
+                            <div>
+                                <span class="badge-mono">PRINCIPLE // 02</span>
+                                <h3 class="headline-sm">Validate Before Delivery</h3>
+                                <p class="body-md">
+                                    Generated geometry is never treated as correct simply because it can be rendered. Geometry requires structural, topological, and computational validation before it is considered suitable for downstream engineering use.
+                                </p>
+                            </div>
+                            <div class="card-tag-footer">TOPOLOGICAL VALIDATION</div>
+                        </div>
+
+                        <!-- Principle 03 -->
+                        <div class="safety-card">
+                            <div>
+                                <span class="badge-mono">PRINCIPLE // 03</span>
+                                <h3 class="headline-sm">Human Oversight</h3>
+                                <p class="body-md">
+                                    ORAIN is designed to assist engineers, not remove engineering accountability. Critical engineering decisions, parameter sign-offs, and final tolerances remain subject to qualified human review.
+                                </p>
+                            </div>
+                            <div class="card-tag-footer">HUMAN-IN-THE-LOOP</div>
+                        </div>
+
+                        <!-- Principle 04 -->
+                        <div class="safety-card">
+                            <div>
+                                <span class="badge-mono">PRINCIPLE // 04</span>
+                                <h3 class="headline-sm">Controlled Execution</h3>
+                                <p class="body-md">
+                                    Intelligent systems should not have unrestricted authority over engineering software or infrastructure. Execution environments are isolated, controlled, and permissioned according to least-privilege principles.
+                                </p>
+                            </div>
+                            <div class="card-tag-footer">SANDBOXED BOUNDARIES</div>
+                        </div>
+
+                        <!-- Principle 05 -->
+                        <div class="safety-card">
+                            <div>
+                                <span class="badge-mono">PRINCIPLE // 05</span>
+                                <h3 class="headline-sm">Traceable Decisions</h3>
+                                <p class="body-md">
+                                    Where possible, engineering transformations maintain structured feature graphs and dependency representations that allow engineers to inspect exactly how an output was produced.
+                                </p>
+                            </div>
+                            <div class="card-tag-footer">PARAMETRIC AUDIT TRAIL</div>
+                        </div>
+
+                        <!-- Principle 06 -->
+                        <div class="safety-card">
+                            <div>
+                                <span class="badge-mono">PRINCIPLE // 06</span>
+                                <h3 class="headline-sm">Continuous Evaluation</h3>
+                                <p class="body-md">
+                                    Safety is an ongoing process. Reasoning models, geometry kernels, constraint solvers, and deployment environments are continuously benchmarked as the platform evolves.
+                                </p>
+                            </div>
+                            <div class="card-tag-footer">EMPIRICAL BENCHMARKING</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             2. TAB: DEPLOYMENT SAFETY & VALIDATION GATES
+             ============================================================= -->
+        <div id="deployment" class="tab-panel">
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">GOVERNANCE &amp; CONTROL</span>
+                    <h2 class="headline-md">Deploying Engineering Intelligence Responsibly</h2>
+                    <p class="body-lg">
+                        Deploying an AI system into an engineering workflow requires more than model performance. The surrounding environment, permissions, validation mechanisms, and human oversight all matter.
+                    </p>
+
+                    <!-- Deployment Pipeline Strip -->
+                    <div style="margin-top: 3.5rem;">
+                        <span class="label-sm">A RESPONSIBLE DEPLOYMENT PRINCIPLE</span>
+                        <div class="pipeline-strip" style="margin-top: 0.8rem;">
+                            <div class="pipeline-step"><span>01</span> Use Case</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>02</span> Risk</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>03</span> Permissions</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>04</span> Validation</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>05</span> Human Oversight</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>06</span> Monitoring</div>
+                        </div>
+                    </div>
+
+                    <div class="cards-grid-2" style="margin-top: 4rem;">
+                        <!-- Left Card: Validation Gates -->
+                        <div class="safety-card">
+                            <div>
+                                <span class="badge-mono">GATEWAY CRITERIA</span>
+                                <h3 class="headline-sm">Algorithmic Validation Gates</h3>
+                                <p class="body-md">
+                                    Generated geometry and CAD operations pass through strict multi-stage validation gates before being released to downstream simulation, meshing, or manufacturing pipelines:
+                                </p>
+                                <ul class="spec-list">
+                                    <li>Geometric validity &amp; boundary evaluation</li>
+                                    <li>Topological consistency &amp; manifold integrity</li>
+                                    <li>Constraint verification &amp; dimensional bounds</li>
+                                    <li>Operation execution validation</li>
+                                    <li>Self-intersection &amp; collision detection</li>
+                                    <li>Manufacturing or workflow-specific checks</li>
+                                </ul>
+                            </div>
+                            <div class="card-tag-footer">PRE-RELEASE VERIFICATION</div>
+                        </div>
+
+                        <!-- Right Card: Environment Separation & Sandboxing -->
+                        <div class="safety-card">
+                            <div>
+                                <span class="badge-mono">ISOLATION INFRASTRUCTURE</span>
+                                <h3 class="headline-sm">Controlled Execution &amp; Separation</h3>
+                                <p class="body-md">
+                                    Intelligent components do not receive unrestricted access to production CAD systems or external services. Development, research, testing, and production environments are strictly separated to prevent experimental models from affecting operational workflows.
+                                </p>
+                                <div class="statement-card" style="margin-top: 1.8rem; background: var(--bg-base); padding: 1.5rem;">
+                                    <p class="body-md" style="color: var(--text-primary); font-family: var(--font-mono); font-size: 0.85rem;">
+                                        Research / Dev &bull; Testing &bull; Staging &bull; Enterprise Production
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card-tag-footer">SECURE ENVIRONMENT SEPARATION</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             3. TAB: SECURITY & PRIVACY
+             ============================================================= -->
+        <div id="security-privacy" class="tab-panel">
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">DATA GOVERNANCE &amp; PROTECTION</span>
+                    <h2 class="headline-md">Protecting Engineering Intellectual Property</h2>
+                    <p class="body-lg">
+                        Engineering data contains highly valuable intellectual property. CAD models, design requirements, manufacturing tolerances, and simulation setups represent years of research and development. Protecting this data is fundamental to deploying ORAIN responsibly.
+                    </p>
+
+                    <div class="cards-grid-4">
+                        <div class="safety-card" style="min-height: 250px;">
+                            <div>
+                                <span class="badge-mono">LIFECYCLE SECURITY</span>
+                                <h3 class="headline-sm" style="font-size: 1.15rem;">Data Protection</h3>
+                                <p class="body-md">End-to-end encryption across all data states: collection, processing, storage, transmission, backup, and deletion.</p>
+                            </div>
+                        </div>
+
+                        <div class="safety-card" style="min-height: 250px;">
+                            <div>
+                                <span class="badge-mono">ACCESS CONTROL</span>
+                                <h3 class="headline-sm" style="font-size: 1.15rem;">Least Privilege</h3>
+                                <p class="body-md">Users, internal models, and service identities only receive the exact permissions required to perform their intended function.</p>
+                            </div>
+                        </div>
+
+                        <div class="safety-card" style="min-height: 250px;">
+                            <div>
+                                <span class="badge-mono">INFRASTRUCTURE</span>
+                                <h3 class="headline-sm" style="font-size: 1.15rem;">Data Isolation</h3>
+                                <p class="body-md">Customer engineering environments are logically or physically isolated to eliminate unauthorized exposure across tenants.</p>
+                            </div>
+                        </div>
+
+                        <div class="safety-card" style="min-height: 250px;">
+                            <div>
+                                <span class="badge-mono">NO UNRESTRICTED TRAINING</span>
+                                <h3 class="headline-sm" style="font-size: 1.15rem;">Customer Data Policy</h3>
+                                <p class="body-md">Customer CAD data is never treated as an unrestricted resource for foundation model retraining or public dataset ingestion[cite: 3, 6].</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="statement-card" style="margin-top: 4rem;">
+                        <span class="label-sm">PRIVACY BY DESIGN</span>
+                        <h3 class="headline-md" style="font-size: 1.8rem;">Security Built into System Architecture</h3>
+                        <p class="body-lg">
+                            Privacy and security considerations are incorporated directly into the computational architecture rather than treated as an afterthought. We continuously evaluate data flows, API boundaries, and infrastructure dependencies to identify and address emerging risks.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             4. TAB: TRUST & TRANSPARENCY
+             ============================================================= -->
+        <div id="transparency" class="tab-panel">
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">HONEST COMMUNICATION &amp; BENCHMARKS</span>
+                    <h2 class="headline-md">Building Technology People Can Understand and Trust</h2>
+                    <p class="body-lg">
+                        Trust in engineering AI cannot come from claims alone. It must come from measurable performance, clear limitations, responsible deployment, and transparency about how the system behaves.
+                    </p>
+
+                    <!-- Distinguishing Capability Tiers -->
+                    <div style="margin-top: 3.5rem;">
+                        <span class="label-sm">CLEAR CAPABILITY CLASSIFICATION</span>
+                        <p class="body-md">We explicitly distinguish between different development stages and never present experimental research as established product capability:</p>
+                        
+                        <div class="tier-pill-grid">
+                            <div class="tier-pill">
+                                <strong>01 &bull; Research Prototypes</strong>
+                                Exploratory architectures and proof-of-concept reasoning models.
+                            </div>
+                            <div class="tier-pill">
+                                <strong>02 &bull; Experimental</strong>
+                                Feature tests undergoing initial geometric verification.
+                            </div>
+                            <div class="tier-pill">
+                                <strong>03 &bull; Validated Capabilities</strong>
+                                Benchmark-tested constraint planning with verified stability.
+                            </div>
+                            <div class="tier-pill">
+                                <strong>04 &bull; Production-Ready</strong>
+                                Deterministic, SLA-backed CAD construction pipelines.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cards-grid-2" style="margin-top: 4rem;">
+                        <!-- Transparent Limitations -->
+                        <div class="safety-card">
+                            <div>
+                                <span class="badge-mono">SYSTEM BOUNDARIES</span>
+                                <h3 class="headline-sm">Clear About Limitations</h3>
+                                <p class="body-md">
+                                    AI systems can encounter ambiguous requirements, insufficient constraints, or unsupported operations. We provide explicit diagnostic feedback when a geometry request lies outside validated operating parameters.
+                                </p>
+                            </div>
+                            <div class="card-tag-footer">NO BLACK BOX GUESSWORK</div>
+                        </div>
+
+                        <!-- Measurable Criteria -->
+                        <div class="safety-card">
+                            <div>
+                                <span class="badge-mono">EMPIRICAL EVALUATION</span>
+                                <h3 class="headline-sm">Measure, Don't Assume</h3>
+                                <p class="body-md">
+                                    We evaluate ORAIN through rigorous engineering benchmarks rather than qualitative marketing demonstrations:
+                                </p>
+                                <ul class="spec-list">
+                                    <li>Geometry validity &amp; B-Rep closure[cite: 4, 6]</li>
+                                    <li>Constraint satisfaction &amp; tolerance accuracy</li>
+                                    <li>Feature correctness &amp; dependency trees</li>
+                                    <li>Topological integrity &amp; manifold health</li>
+                                    <li>Deterministic generation reproducibility</li>
+                                </ul>
+                            </div>
+                            <div class="card-tag-footer">SCIENTIFIC BENCHMARKING</div>
+                        </div>
+                    </div>
+
+                    <!-- The Responsible Communication Commitment -->
+                    <div class="statement-card" style="margin-top: 4rem;">
+                        <span class="label-sm">OUR COMMITMENT</span>
+                        <p class="quote-lead" style="margin: 0.5rem 0 1rem; font-family: var(--font-mono);">
+                            "Do not hide the limitations. Do not exaggerate the capabilities. Show the evidence."
+                        </p>
+                        <p class="body-lg">
+                            Engineering systems earn trust through consistent performance. Our goal is to build ORAIN through rigorous research, testing, validation, and transparent communication — so that trust is earned through the technology itself.
+                        </p>
+                        <div class="card-tag-footer" style="border: none; padding-top: 1.5rem;">
+                            Orains &bull; BUILDING GEOMETRIC INTELLIGENCE RESPONSIBLY
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">Orains</div>
+                    <p>The Geometric Intelligence Company.</p>
+                    <a href="mailto:contact@orainlabs.io" class="footer-email">contact@orainlabs.io</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="product#orain-forge">Orain Forge</a>
+                    <a href="product#paxx">Paxx 1.0 - API</a>
+                    <a href="product#geometric-engine">Geometric Engine</a>
+                    <a href="product#orain-stack">ORAIN Stack</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="careers" target="_blank" rel="noopener noreferrer">Careers</a>
+                    <a href="company#about">About us</a>
+                    <a href="mailto:contact@orainlabs.io">Support</a>
+                    <a href="research">Research</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Business</h4>
+                    <a href="business#overview">Overview</a>
+                    <a href="business#solutions">Solution</a>
+                    <a href="business#resources">Resources</a>
+                    <a href="business#stories">Engineers stories</a>
+                    <a href="business#contact-sales">Contact sales</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Safety &amp; Trust</h4>
+                    <a href="#principles" class="link-tab">Safety Principles</a>
+                    <a href="#deployment" class="link-tab">Deployment Safety</a>
+                    <a href="#security-privacy" class="link-tab">Data Protection</a>
+                    <a href="#transparency" class="link-tab">Trust &amp; Transparency</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>Orains &copy; 2026</div>
+                <div>Geometric Intelligence for Engineering</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Tab Navigation & Theme Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* 1. Theme Toggle */
+            const themeBtn = document.getElementById('theme-toggle');
+            const sunIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>`;
+            const moonIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>`;
+
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                themeBtn.innerHTML = document.body.classList.contains('light-mode') ? moonIcon : sunIcon;
+            });
+
+            /* 2. Tab Section Switching System */
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            const subnavLinks = document.querySelectorAll('.subnav-link');
+            const tabTriggerLinks = document.querySelectorAll('a[href^="#"]');
+
+            function triggerReveals(panel) {
+                const reveals = panel.querySelectorAll('.reveal');
+                reveals.forEach(el => el.classList.add('visible'));
+            }
+
+            function activateTab(tabId, updateHash = true) {
+                const cleanId = tabId.replace('#', '');
+                const targetPanel = document.getElementById(cleanId);
+                
+                if (!targetPanel || !targetPanel.classList.contains('tab-panel')) return;
+
+                tabPanels.forEach(panel => panel.classList.remove('active'));
+                targetPanel.classList.add('active');
+                triggerReveals(targetPanel);
+
+                subnavLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${cleanId}`) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                if (updateHash) {
+                    history.pushState(null, '', `#${cleanId}`);
+                }
+            }
+
+            tabTriggerLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href');
+                    if (targetId && targetId.startsWith('#') && targetId.length > 1) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement && targetElement.classList.contains('tab-panel')) {
+                            e.preventDefault();
+                            activateTab(targetId);
+                        }
+                    }
+                });
+            });
+
+            const currentHash = window.location.hash;
+            if (currentHash && document.querySelector(currentHash)?.classList.contains('tab-panel')) {
+                activateTab(currentHash, false);
+            } else {
+                activateTab('principles', false);
+            }
+
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash || '#principles';
+                activateTab(hash, false);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Terms &amp; Policies — Orains</title>
+    <meta name="description" content="Legal terms, privacy policies, acceptable use frameworks, and governance documentation for Orains and the ORAIN platform.">
+
+    <!-- Typography: Instrument Sans for UI & Legal Prose, JetBrains Mono for Metadata -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* =====================================================================
+           1. CORE SYSTEM & VARIABLES (DARK MODE DEFAULT)
+           ===================================================================== */
+        :root {
+            --bg-base: #0a0a0a;
+            --bg-base-rgb: 10, 10, 10;
+            --bg-soft: #141414;
+            --bg-surface: #1e1e1e;
+
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+
+            --line: #2a2a2a;
+            --line-light: #1a1a1a;
+
+            --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --nav-height: 80px;
+            --subnav-height: 52px;
+        }
+
+        body.light-mode {
+            --bg-base: #ffffff;
+            --bg-base-rgb: 255, 255, 255;
+            --bg-soft: #fcfcfc;
+            --bg-surface: #f5f5f4;
+
+            --text-primary: #000000;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+
+            --line: #e5e5e5;
+            --line-light: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-sans);
+            font-size: 16px;
+            overflow-x: clip;
+        }
+
+        body {
+            background: var(--bg-base);
+            color: var(--text-primary);
+            overflow-x: clip;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        /* =====================================================================
+           2. TYPOGRAPHY & UTILITIES
+           ===================================================================== */
+        .container {
+            width: min(1120px, calc(100% - 4rem));
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .label-sm {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        .headline-xl {
+            color: var(--text-primary);
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+            font-weight: 500;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+        }
+
+        .headline-md {
+            color: var(--text-primary);
+            font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+        }
+
+        .headline-sm {
+            color: var(--text-primary);
+            font-size: 1.15rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.5rem;
+        }
+
+        .body-lg {
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 1.2vw, 1.15rem);
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        .body-md {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .link-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding-bottom: 3px;
+            border-bottom: 1px solid var(--text-primary);
+            margin-top: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: var(--font-sans);
+        }
+
+        .link-cta:hover {
+            opacity: 0.6;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================================
+           3. PRIMARY NAVIGATION & SUB-NAV (BOTH FIXED ON SCROLL)
+           ===================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 100;
+            background: rgba(var(--bg-base-rgb), 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-container {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+        
+        .theme-toggle-btn:hover {
+            background-color: var(--line-light);
+        }
+
+        /* Fixed Legal Sub-Navigation - Pinned right below Header */
+        .subnav-bar {
+            position: fixed;
+            top: var(--nav-height);
+            left: 0;
+            width: 100%;
+            height: var(--subnav-height);
+            z-index: 95;
+            background: rgba(var(--bg-base-rgb), 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid var(--line-light);
+        }
+
+        .subnav-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            height: 100%;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .subnav-container::-webkit-scrollbar { display: none; }
+
+        .subnav-link {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.4rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .subnav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .subnav-link.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--text-primary);
+        }
+
+        /* =====================================================================
+           4. TAB PANEL SWITCHING SYSTEM & SWIPE TRANSITIONS
+           ===================================================================== */
+        #legal-tab-root {
+            /* Offset content below both fixed headers */
+            padding-top: calc(var(--nav-height) + var(--subnav-height));
+            touch-action: pan-y pinch-zoom; /* Allows normal vertical scrolling while detecting horizontal swipe */
+        }
+
+        .tab-panel {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .tab-panel.slide-left {
+            animation: slideInFromRight 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .tab-panel.slide-right {
+            animation: slideInFromLeft 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideInFromRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .legal-hero {
+            padding-top: 3rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid var(--line-light);
+            background: radial-gradient(circle at 80% 20%, var(--bg-soft) 0%, var(--bg-base) 70%);
+        }
+
+        .legal-body-section {
+            padding: 4rem 0 6rem;
+        }
+
+        /* =====================================================================
+           5. LEGAL DOCUMENT TYPOGRAPHY & STRUCTURE
+           ===================================================================== */
+        .legal-meta-strip {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            flex-wrap: wrap;
+        }
+
+        .legal-meta-strip span {
+            color: var(--text-primary);
+        }
+
+        .legal-document {
+            display: flex;
+            flex-direction: column;
+            gap: 3.5rem;
+            max-width: 900px;
+        }
+
+        .legal-clause {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .clause-title {
+            font-family: var(--font-sans);
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            letter-spacing: -0.01em;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--line-light);
+        }
+
+        .clause-text {
+            color: var(--text-secondary);
+            font-size: 0.98rem;
+            line-height: 1.75;
+        }
+
+        .clause-subheading {
+            font-family: var(--font-sans);
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-top: 0.8rem;
+        }
+
+        .legal-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin: 0.5rem 0;
+            padding-left: 0.5rem;
+        }
+
+        .legal-list li {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            line-height: 1.6;
+        }
+
+        .legal-list li::before {
+            content: "•";
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.4;
+        }
+
+        .legal-contact-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 2.2rem;
+            margin-top: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .legal-contact-card strong {
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 1rem;
+        }
+
+        .legal-contact-card span {
+            color: var(--text-secondary);
+        }
+
+        /* Supplementary Policy Grid */
+        .policy-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.8rem;
+            margin-top: 2rem;
+        }
+
+        .policy-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 200px;
+            transition: border-color 0.25s ease, transform 0.25s ease;
+        }
+
+        .policy-card:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-2px);
+        }
+
+        /* =====================================================================
+           6. FOOTER
+           ===================================================================== */
+        footer {
+            padding: 6rem 0 3rem;
+            background: var(--bg-base);
+            border-top: 1px solid var(--line);
+            font-size: 0.85rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .footer-brand {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .footer-brand + p {
+            margin-top: 0.5rem;
+            max-width: 220px;
+            color: var(--text-secondary);
+        }
+
+        .footer-email {
+            display: inline-block;
+            margin-top: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 2px;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 0.3rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            padding: 0.2rem 0;
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-muted);
+            border-top: 1px solid var(--line-light);
+            padding-top: 2rem;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .policy-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            /* Compact Header & Tabs on mobile */
+            :root {
+                --nav-height: 64px;
+                --subnav-height: 48px;
+            }
+
+            .container { width: calc(100% - 2rem); }
+            .subnav-container {
+                gap: 1.4rem;
+                padding: 0 0.5rem;
+            }
+
+            .legal-hero { padding-top: 2rem; padding-bottom: 3rem; }
+            .legal-body-section { padding: 3rem 0 4.5rem; }
+            .legal-meta-strip { flex-direction: column; gap: 0.5rem; }
+            .legal-contact-card { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Primary Navigation (Fixed) -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">Orains</a>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="product">Product</a>
+                <a href="business">Business</a>
+                <a href="company">Company</a>
+                <a href="research">Research</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="business#contact-sales" class="nav-cta" style="font-size: 0.85rem;">Contact Legal</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-Navigation for Terms and Policies (Fixed & Pinned below header) -->
+    <nav class="subnav-bar" id="subnav-bar" aria-label="Terms and Policies subsections">
+        <div class="container subnav-container" id="subnav-scroll-container">
+            <a href="#terms-of-use" class="subnav-link active">Terms of Use</a>
+            <a href="#privacy-policy" class="subnav-link">Privacy Policy</a>
+            <a href="#company-policies" class="subnav-link">Company Policies</a>
+        </div>
+    </nav>
+
+    <main id="legal-tab-root">
+        <!-- =============================================================
+             1. TAB: TERMS OF USE
+             ============================================================= -->
+        <div id="terms-of-use" class="tab-panel active">
+            <!-- Hero -->
+            <section class="legal-hero">
+                <div class="container">
+                    <span class="label-sm">LEGAL GOVERNANCE</span>
+                    <h1 class="headline-xl">Terms of Use</h1>
+                    <p class="body-lg">
+                        These Terms of Use govern access to and use of websites, software, APIs, applications, research systems, documentation, and related services operated by Orains .
+                    </p>
+                    <div class="legal-meta-strip">
+                        <div>Effective Date: <span>August 12th 2026</span></div>
+                        <div>Last Updated: <span>December 9th 2024</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Complete Terms Content -->
+            <section class="legal-body-section">
+                <div class="container">
+                    <div class="legal-document">
+                        <div class="clause-text">
+                            These Terms of Use ("Terms") govern access to and use of websites, software, APIs, applications, research systems, documentation, and related services operated by Orains [LEGAL ENTITY NAME] ("Orains", "we", "us", or "our") . By accessing or using an Orains service, you acknowledge that you have read and agree to these Terms .
+                        </div>
+
+                        <!-- 1. Scope of Services -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">1. Scope of Services</h2>
+                            <p class="clause-text">
+                                Orains develops artificial intelligence, computational geometry, engineering software, and related technologies .
+                            </p>
+                            <p class="clause-text">
+                                Our technology portfolio includes ORAIN — The Geometric Intelligence and associated systems, including PAXX, the Engineering Reasoning Engine (ERE), Geometric Engine, ORAIN Forge, and Visualization Sub-Engine (VSE) .
+                            </p>
+                            <p class="clause-text">
+                                Certain services may be provided as production services, research systems, experimental technologies, APIs, previews, demonstrations, or other forms of software . Additional product-specific or contractual terms may apply to particular services .
+                            </p>
+                        </div>
+
+                        <!-- 2. Acceptable Use -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">2. Acceptable Use</h2>
+                            <p class="clause-text">
+                                You may use Orains services only for lawful purposes and in accordance with these Terms .
+                            </p>
+                            <p class="clause-text">You may not:</p>
+                            <ul class="legal-list">
+                                <li>Access or use services without appropriate authorization .</li>
+                                <li>Circumvent authentication, access controls, security mechanisms, or usage restrictions .</li>
+                                <li>Attempt to compromise, disrupt, overload, or interfere with our systems or infrastructure .</li>
+                                <li>Introduce malicious code, malware, or other harmful material .</li>
+                                <li>Use our services to violate applicable law or regulation .</li>
+                                <li>Infringe intellectual-property, confidentiality, privacy, or other rights .</li>
+                                <li>Use automated systems to abuse or materially degrade our services .</li>
+                                <li>Attempt to extract protected source code, models, system prompts, credentials, or proprietary technology except where expressly permitted .</li>
+                                <li>Use generated engineering outputs in consequential applications without appropriate professional review and validation .</li>
+                            </ul>
+                        </div>
+
+                        <!-- 3. AI and Engineering Outputs -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">3. Artificial Intelligence and Engineering Outputs</h2>
+                            <p class="clause-text">
+                                Orains services may use machine-learning models, artificial intelligence, computational geometry, deterministic engineering software, and other automated systems .
+                            </p>
+                            <p class="clause-text">
+                                AI-generated or computational outputs may contain inaccuracies, omissions, or unexpected behavior .
+                            </p>
+                            <p class="clause-text">
+                                Engineering outputs must therefore be independently reviewed, verified, and validated by appropriately qualified personnel before use in manufacturing, simulation, safety-critical applications, regulatory submissions, or other consequential environments .
+                            </p>
+                            <p class="clause-text">
+                                Orains technology is intended to augment engineering workflows and engineering expertise; it does not transfer professional responsibility from the user to the system .
+                            </p>
+                        </div>
+
+                        <!-- 4. Research and Experimental Systems -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">4. Research and Experimental Systems</h2>
+                            <p class="clause-text">
+                                Some Orains technologies may be experimental or under active development . Experimental systems may have limitations relating to accuracy, availability, performance, interoperability, or reliability and may be modified, suspended, or discontinued as research progresses .
+                            </p>
+                            <p class="clause-text">
+                                Any service identified as experimental, prototype, beta, research, or preview should be treated accordingly .
+                            </p>
+                        </div>
+
+                        <!-- 5. Customer and User Content -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">5. Customer and User Content</h2>
+                            <p class="clause-text">
+                                You retain ownership of content and information that you lawfully submit to an Orains service, subject to any rights expressly granted under a separate agreement . You are responsible for ensuring that you have the necessary rights, permissions, and authority to submit such content .
+                            </p>
+                            <p class="clause-text">
+                                Orains may process submitted information as reasonably necessary to provide, secure, maintain, operate, and support the applicable service, subject to our Privacy Policy and any applicable contractual commitments .
+                            </p>
+                        </div>
+
+                        <!-- 6. Intellectual Property -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">6. Intellectual Property</h2>
+                            <p class="clause-text">
+                                All rights, title, and interest in Orains software, models, algorithms, APIs, documentation, architecture, research, trademarks, designs, and other proprietary materials remain with Orains or its licensors unless expressly agreed otherwise in writing . These Terms do not grant ownership of Orains intellectual property .
+                            </p>
+                        </div>
+
+                        <!-- 7. Third-Party Infrastructure and Services -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">7. Third-Party Infrastructure and Services</h2>
+                            <p class="clause-text">
+                                Orains may rely on third-party infrastructure, cloud platforms, APIs, software libraries, security services, communications services, and other technology providers . Such services may include infrastructure and services provided by third-party cloud and technology providers .
+                            </p>
+                            <p class="clause-text">
+                                Your use of a third-party service may also be subject to that provider's separate contractual terms, acceptable-use requirements, service terms, and policies . Orains does not assume responsibility for independent third-party services outside our reasonable control .
+                            </p>
+                        </div>
+
+                        <!-- 8. Security and Availability -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">8. Security and Availability</h2>
+                            <p class="clause-text">
+                                We implement reasonable technical and organizational measures designed to protect our services and information . However, no internet-connected system can be guaranteed to be completely secure or continuously available .
+                            </p>
+                            <p class="clause-text">
+                                Service availability, maintenance windows, service limitations, and applicable service levels may differ between products and commercial agreements .
+                            </p>
+                        </div>
+
+                        <!-- 9. Changes to Services -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">9. Changes to Services</h2>
+                            <p class="clause-text">
+                                Orains is a research and technology company . Accordingly, services may evolve over time . We may modify, improve, suspend, or discontinue particular features or services where reasonably necessary for development, security, legal compliance, maintenance, or product evolution .
+                            </p>
+                        </div>
+
+                        <!-- 10. Suspension and Termination -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">10. Suspension and Termination</h2>
+                            <p class="clause-text">We may restrict or suspend access where reasonably necessary to :</p>
+                            <ul class="legal-list">
+                                <li>Protect our users, systems, or infrastructure .</li>
+                                <li>Prevent abuse or unauthorized activity .</li>
+                                <li>Address security incidents .</li>
+                                <li>Comply with applicable legal requirements .</li>
+                                <li>Investigate violations of these Terms .</li>
+                            </ul>
+                        </div>
+
+                        <!-- 11. Disclaimer -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">11. Disclaimer</h2>
+                            <p class="clause-text">
+                                Except where expressly provided otherwise in a written agreement, services are provided on an "as available" and "as is" basis to the maximum extent permitted by applicable law .
+                            </p>
+                            <p class="clause-text">
+                                We do not guarantee that AI-generated outputs, engineering representations, APIs, or software will be uninterrupted, error-free, complete, or suitable for every particular use case .
+                            </p>
+                        </div>
+
+                        <!-- 12. Limitation of Liability -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">12. Limitation of Liability</h2>
+                            <p class="clause-text">
+                                To the maximum extent permitted by applicable law, Orains shall not be liable for indirect, incidental, consequential, special, exemplary, or punitive damages arising out of or relating to use of the services . Nothing in these Terms excludes liability that cannot legally be excluded .
+                            </p>
+                        </div>
+
+                        <!-- 13. Governing Law -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">13. Governing Law</h2>
+                            <p class="clause-text">
+                                These Terms shall be governed by the laws of [JURISDICTION] . Disputes shall be subject to the courts of [JURISDICTION], except where applicable law or a separate written agreement provides otherwise .
+                            </p>
+                        </div>
+
+                        <!-- 14. Changes to These Terms -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">14. Changes to These Terms</h2>
+                            <p class="clause-text">
+                                We may update these Terms periodically . Material changes will be reflected by updating the date shown above and, where appropriate, providing additional notice .
+                            </p>
+                        </div>
+
+                        <!-- 15. Contact -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">15. Contact</h2>
+                            <div class="legal-contact-card">
+                                <strong>Orains</strong>
+                                <span>Legal Contact: <a href="mailto:legal@orainlabs.gamtech.in" style="color: var(--text-primary); text-decoration: underline;">legal@orainlabs.gamtech.in</a></span>
+                                <span>Registered Office: Mumbai 400701 Maharashtra, India </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             2. TAB: PRIVACY POLICY
+             ============================================================= -->
+        <div id="privacy-policy" class="tab-panel">
+            <!-- Hero -->
+            <section class="legal-hero">
+                <div class="container">
+                    <span class="label-sm">DATA PROTECTION &amp; PRIVACY</span>
+                    <h1 class="headline-xl">Privacy Policy</h1>
+                    <p class="body-lg">
+                        Orains recognizes that trust depends on responsible handling of information . This Privacy Policy describes how Orains collects, uses, protects, retains, and discloses information .
+                    </p>
+                    <div class="legal-meta-strip">
+                        <div>Effective Date: <span>August 12th 2026</span></div>
+                        <div>Last Updated: <span>December 9th 2024</span></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Complete Privacy Content -->
+            <section class="legal-body-section">
+                <div class="container">
+                    <div class="legal-document">
+                        <div class="clause-text">
+                            Orains recognizes that trust depends on responsible handling of information . This Privacy Policy describes how Orains [LEGAL ENTITY NAME] collects, uses, protects, retains, and discloses information in connection with our websites, applications, APIs, research systems, and services .
+                        </div>
+
+                        <!-- 1. Information We Collect -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">1. Information We Collect</h2>
+                            <p class="clause-text">
+                                Depending on the service and your interaction with us, information may include :
+                            </p>
+
+                            <h3 class="clause-subheading">Business and Account Information</h3>
+                            <ul class="legal-list">
+                                <li>Name </li>
+                                <li>Business email </li>
+                                <li>Organization </li>
+                                <li>Role or title </li>
+                                <li>Account information </li>
+                                <li>Authentication information </li>
+                                <li>Communications with Orains </li>
+                            </ul>
+
+                            <h3 class="clause-subheading">Technical Information</h3>
+                            <ul class="legal-list">
+                                <li>IP address </li>
+                                <li>Browser and device information </li>
+                                <li>Operating-system information </li>
+                                <li>Log data </li>
+                                <li>Diagnostic information </li>
+                                <li>Usage information </li>
+                                <li>API activity </li>
+                            </ul>
+
+                            <h3 class="clause-subheading">Service and Engineering Information</h3>
+                            <p class="clause-text">Where a service requires it, users may submit :</p>
+                            <ul class="legal-list">
+                                <li>Engineering requirements </li>
+                                <li>Natural-language descriptions </li>
+                                <li>CAD and geometry files </li>
+                                <li>Design information </li>
+                                <li>Technical documents </li>
+                                <li>API requests </li>
+                                <li>Model inputs </li>
+                                <li>Generated outputs </li>
+                                <li>Other information necessary to use the service </li>
+                            </ul>
+                        </div>
+
+                        <!-- 2. How We Use Information -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">2. How We Use Information</h2>
+                            <p class="clause-text">We may process information to :</p>
+                            <ul class="legal-list">
+                                <li>Provide requested services .</li>
+                                <li>Authenticate and manage accounts .</li>
+                                <li>Execute API and software requests .</li>
+                                <li>Maintain reliability and security .</li>
+                                <li>Detect abuse, fraud, and unauthorized activity .</li>
+                                <li>Troubleshoot technical issues .</li>
+                                <li>Communicate with users and customers .</li>
+                                <li>Meet legal and contractual obligations .</li>
+                                <li>Develop, test, and improve our technologies where permitted .</li>
+                            </ul>
+                        </div>
+
+                        <!-- 3. Engineering and Confidential Information -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">3. Engineering and Confidential Information</h2>
+                            <p class="clause-text">
+                                Engineering information may contain confidential, proprietary, or commercially sensitive material . Orains treats such information according to the applicable service terms, contractual commitments, and security requirements .
+                            </p>
+                            <p class="clause-text">
+                                Enterprise customers may have additional protections established through confidentiality agreements, data-processing agreements, order forms, or other contractual arrangements .
+                            </p>
+                        </div>
+
+                        <!-- 4. Processing Through Infrastructure Providers -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">4. Processing Through Infrastructure Providers</h2>
+                            <p class="clause-text">
+                                Orains may use third-party technology and infrastructure providers to host, process, secure, monitor, or deliver services . These providers may include cloud, infrastructure, security, communications, and other technology providers .
+                            </p>
+                            <p class="clause-text">
+                                Where third parties process information on our behalf, we seek to establish appropriate contractual and technical safeguards consistent with the applicable service and legal requirements .
+                            </p>
+                        </div>
+
+                        <!-- 5. Data Security -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">5. Data Security</h2>
+                            <p class="clause-text">
+                                We maintain reasonable technical and organizational safeguards appropriate to the nature of the information and the risks associated with processing it . These measures may include :
+                            </p>
+                            <ul class="legal-list">
+                                <li>Identity and access management </li>
+                                <li>Least-privilege access </li>
+                                <li>Authentication controls </li>
+                                <li>Encryption where appropriate </li>
+                                <li>Network and infrastructure controls </li>
+                                <li>Logging and monitoring </li>
+                                <li>Environment separation </li>
+                                <li>Secure software development practices </li>
+                                <li>Incident response processes </li>
+                            </ul>
+                            <p class="clause-text" style="margin-top: 0.5rem;">
+                                Security controls may evolve as our systems and risk environment develop .
+                            </p>
+                        </div>
+
+                        <!-- 6. Data Retention -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">6. Data Retention</h2>
+                            <p class="clause-text">
+                                Information is retained only for as long as reasonably necessary for the purposes described in this Policy, contractual obligations, security, legal requirements, dispute resolution, or legitimate operational needs . Specific retention periods may vary by service and data category .
+                            </p>
+                        </div>
+
+                        <!-- 7. Data Transfers -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">7. Data Transfers</h2>
+                            <p class="clause-text">
+                                Orains may process information using infrastructure located in multiple jurisdictions . Where applicable law requires safeguards for international transfers, we will implement appropriate mechanisms .
+                            </p>
+                        </div>
+
+                        <!-- 8. Data Subject Rights -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">8. Data Subject Rights</h2>
+                            <p class="clause-text">
+                                Depending on applicable law and your jurisdiction, you may have rights relating to your personal information, including rights to :
+                            </p>
+                            <ul class="legal-list">
+                                <li>Access personal information .</li>
+                                <li>Correct inaccurate information .</li>
+                                <li>Request deletion .</li>
+                                <li>Restrict or object to certain processing .</li>
+                                <li>Request portability .</li>
+                                <li>Withdraw consent where applicable .</li>
+                            </ul>
+                            <p class="clause-text" style="margin-top: 0.5rem;">
+                                Requests may be directed to the privacy contact below .
+                            </p>
+                        </div>
+
+                        <!-- 9. Cookies and Similar Technologies -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">9. Cookies and Similar Technologies</h2>
+                            <p class="clause-text">
+                                Our websites may use cookies and similar technologies for essential operation, security, analytics, and performance . Where legally required, applicable consent and preference mechanisms will be provided .
+                            </p>
+                        </div>
+
+                        <!-- 10. Children's Privacy -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">10. Children's Privacy</h2>
+                            <p class="clause-text">
+                                Our services are not directed toward children unless expressly stated otherwise . We do not knowingly collect personal information from children in violation of applicable law .
+                            </p>
+                        </div>
+
+                        <!-- 11. Policy Changes -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">11. Policy Changes</h2>
+                            <p class="clause-text">
+                                We may update this Privacy Policy as our technology, services, and legal obligations evolve . The current version will always display its effective and last-updated dates .
+                            </p>
+                        </div>
+
+                        <!-- 12. Privacy Contact -->
+                        <div class="legal-clause">
+                            <h2 class="clause-title">12. Privacy Contact</h2>
+                            <div class="legal-contact-card">
+                                <strong>Orains</strong>
+                                <span>Legal Contact: <a href="mailto:legal@orainlabs.gamtech.in" style="color: var(--text-primary); text-decoration: underline;">legal@orainlabs.gamtech.in</a></span>
+                                <span>Registered Office: Mumbai 400701 Maharashtra, India </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             3. TAB: OTHER POLICIES / POLICY FRAMEWORK
+             ============================================================= -->
+        <div id="company-policies" class="tab-panel">
+            <!-- Hero -->
+            <section class="legal-hero">
+                <div class="container">
+                    <span class="label-sm">POLICY FRAMEWORK</span>
+                    <h1 class="headline-xl">Other Policies</h1>
+                    <p class="body-lg">
+                        Orains maintains a policy framework designed to support responsible development, secure operation, and trustworthy deployment of engineering and artificial-intelligence technologies .
+                    </p>
+                </div>
+            </section>
+
+            <!-- Supplementary Policy Grid -->
+            <section class="legal-body-section">
+                <div class="container">
+                    <div class="legal-document">
+                        <p class="clause-text">
+                            The policies below supplement our Terms of Use and Privacy Policy and may apply depending on the service, customer, deployment model, or use case .
+                        </p>
+
+                        <div class="policy-grid">
+                            <!-- Acceptable Use Policy -->
+                            <div class="policy-card">
+                                <div>
+                                    <h3 class="headline-sm">Acceptable Use Policy</h3>
+                                    <p class="body-md">Defines prohibited and restricted uses of Orains systems, APIs, models, infrastructure, and services .</p>
+                                </div>
+                                <a href="#company-policies" class="link-cta">View Acceptable Use Policy &rarr;</a>
+                            </div>
+
+                            <!-- Security Policy -->
+                            <div class="policy-card">
+                                <div>
+                                    <h3 class="headline-sm">Security Policy</h3>
+                                    <p class="body-md">Describes the principles and controls used to protect Orains infrastructure, systems, applications, accounts, and information .</p>
+                                </div>
+                                <a href="#company-policies" class="link-cta">View Security Policy &rarr;</a>
+                            </div>
+
+                            <!-- Responsible AI Policy -->
+                            <div class="policy-card">
+                                <div>
+                                    <h3 class="headline-sm">Responsible AI Policy</h3>
+                                    <p class="body-md">Describes our approach to responsible development and deployment of AI technologies, including transparency, evaluation, human oversight, reliability, and risk management .</p>
+                                </div>
+                                <a href="#company-policies" class="link-cta">View Responsible AI Policy &rarr;</a>
+                            </div>
+
+                            <!-- Engineering Safety & Validation Policy -->
+                            <div class="policy-card">
+                                <div>
+                                    <h3 class="headline-sm">Engineering Safety &amp; Validation Policy</h3>
+                                    <p class="body-md">Describes our approach to validation and responsible use of AI-assisted engineering outputs, including geometric integrity, system verification, human review, and deployment controls .</p>
+                                </div>
+                                <a href="#company-policies" class="link-cta">View Engineering Safety Policy &rarr;</a>
+                            </div>
+
+                            <!-- API & Developer Policy -->
+                            <div class="policy-card">
+                                <div>
+                                    <h3 class="headline-sm">API &amp; Developer Policy</h3>
+                                    <p class="body-md">Applies to developers and organizations integrating with Orains APIs and developer-facing systems .</p>
+                                </div>
+                                <a href="#company-policies" class="link-cta">View API Policy &rarr;</a>
+                            </div>
+
+                            <!-- Research & Experimental Technology Policy -->
+                            <div class="policy-card">
+                                <div>
+                                    <h3 class="headline-sm">Research &amp; Experimental Technology Policy</h3>
+                                    <p class="body-md">Describes the status, limitations, evaluation expectations, and appropriate use of experimental and research-stage technologies .</p>
+                                </div>
+                                <a href="#company-policies" class="link-cta">View Research Policy &rarr;</a>
+                            </div>
+
+                            <!-- Data Processing Terms -->
+                            <div class="policy-card">
+                                <div>
+                                    <h3 class="headline-sm">Data Processing Terms</h3>
+                                    <p class="body-md">Where applicable, additional contractual terms may govern the processing of personal information or customer data on behalf of an organization .</p>
+                                </div>
+                                <a href="#company-policies" class="link-cta">View Data Processing Terms &rarr;</a>
+                            </div>
+
+                            <!-- Intellectual Property & Licensing -->
+                            <div class="policy-card">
+                                <div>
+                                    <h3 class="headline-sm">Intellectual Property &amp; Licensing</h3>
+                                    <p class="body-md">Provides information concerning ownership, licensing, trademarks, software, research outputs, documentation, and other intellectual-property matters .</p>
+                                </div>
+                                <a href="#company-policies" class="link-cta">View Intellectual Property Policy &rarr;</a>
+                            </div>
+                        </div>
+
+                        <!-- Policy Governance Clause -->
+                        <div class="legal-clause" style="margin-top: 2rem;">
+                            <h2 class="clause-title">Policy Governance</h2>
+                            <p class="clause-text">
+                                Orains may introduce, modify, or retire policies as our products, infrastructure, research activities, and regulatory obligations evolve . The applicable policy and version will be identified on the relevant policy page .
+                            </p>
+                            <div class="legal-contact-card">
+                                <strong>Orains</strong>
+                                <span>Legal Contact: <a href="mailto:legal@orainlabs.gamtech.in" style="color: var(--text-primary); text-decoration: underline;">legal@orainlabs.gamtech.in</a></span>
+                                <span>Registered Office: Mumbai 400701 Maharashtra, India </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">Orains</div>
+                    <p>The Geometric Intelligence Company.</p>
+                    <a href="mailto:contact@orainlabs.io" class="footer-email">contact@orainlabs.io</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="product#orain-forge">Orain Forge</a>
+                    <a href="product#paxx">Paxx 1.0 - API</a>
+                    <a href="product#geometric-engine">Geometric Engine</a>
+                    <a href="product#orain-stack">ORAIN Stack</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="careers" target="_blank" rel="noopener noreferrer">Careers</a>
+                    <a href="company#about">About us</a>
+                    <a href="mailto:contact@orainlabs.io">Support</a>
+                    <a href="research">Research</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Business</h4>
+                    <a href="business#overview">Overview</a>
+                    <a href="business#solutions">Solution</a>
+                    <a href="business#resources">Resources</a>
+                    <a href="business#stories">Engineers stories</a>
+                    <a href="business#contact-sales">Contact sales</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Terms &amp; Policies</h4>
+                    <a href="#terms-of-use" class="link-tab">Terms and conditions</a>
+                    <a href="#privacy-policy" class="link-tab">Privacy Policy</a>
+                    <a href="#company-policies" class="link-tab">Company policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>Orains &copy; 2026</div>
+                <div>Geometric Intelligence for Engineering</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Navigation, Theme, Sticky Subnav & Swipe Gestures Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* 1. Theme Toggle */
+            const themeBtn = document.getElementById('theme-toggle');
+            const sunIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>`;
+            const moonIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>`;
+
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                themeBtn.innerHTML = document.body.classList.contains('light-mode') ? moonIcon : sunIcon;
+            });
+
+            /* 2. Tab Section Switching System */
+            const tabPanels = Array.from(document.querySelectorAll('.tab-panel'));
+            const subnavLinks = Array.from(document.querySelectorAll('.subnav-link'));
+            const subnavContainer = document.getElementById('subnav-scroll-container');
+            const tabTriggerLinks = document.querySelectorAll('a[href^="#"]');
+            const tabIds = tabPanels.map(p => p.id);
+
+            function triggerReveals(panel) {
+                const reveals = panel.querySelectorAll('.reveal');
+                reveals.forEach(el => el.classList.add('visible'));
+            }
+
+            // Scroll the active tab button into center view in the horizontal subnav
+            function centerActiveSubnavLink(activeLink) {
+                if (!subnavContainer || !activeLink) return;
+                const containerWidth = subnavContainer.offsetWidth;
+                const linkLeft = activeLink.offsetLeft;
+                const linkWidth = activeLink.offsetWidth;
+                const scrollPos = linkLeft - (containerWidth / 2) + (linkWidth / 2);
+                subnavContainer.scrollTo({
+                    left: scrollPos,
+                    behavior: 'smooth'
+                });
+            }
+
+            function activateTab(tabId, updateHash = true, direction = null) {
+                const cleanId = tabId.replace('#', '');
+                const targetPanel = document.getElementById(cleanId);
+                
+                if (!targetPanel || !targetPanel.classList.contains('tab-panel')) return;
+
+                // Remove active classes
+                tabPanels.forEach(panel => {
+                    panel.classList.remove('active', 'slide-left', 'slide-right');
+                });
+
+                // Add active and directional slide animation
+                targetPanel.classList.add('active');
+                if (direction === 'next') {
+                    targetPanel.classList.add('slide-left');
+                } else if (direction === 'prev') {
+                    targetPanel.classList.add('slide-right');
+                }
+                triggerReveals(targetPanel);
+
+                // Update subnav link styles & scroll it into center view
+                let activeSubnavLink = null;
+                subnavLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${cleanId}`) {
+                        link.classList.add('active');
+                        activeSubnavLink = link;
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                if (activeSubnavLink) {
+                    centerActiveSubnavLink(activeSubnavLink);
+                }
+
+                // Scroll to top smoothly
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                // Update URL hash
+                if (updateHash) {
+                    history.pushState(null, '', `#${cleanId}`);
+                }
+            }
+
+            // Click listener for all tab navigation anchors
+            tabTriggerLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href');
+                    if (targetId && targetId.startsWith('#') && targetId.length > 1) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement && targetElement.classList.contains('tab-panel')) {
+                            e.preventDefault();
+                            activateTab(targetId);
+                        }
+                    }
+                });
+            });
+
+            /* 3. Horizontal Touch Swipe Navigation for Mobile/Phone */
+            let touchStartX = 0;
+            let touchStartY = 0;
+            let touchEndX = 0;
+            let touchEndY = 0;
+
+            const mainContent = document.getElementById('legal-tab-root');
+
+            mainContent.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
+            }, { passive: true });
+
+            mainContent.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipeGesture();
+            }, { passive: true });
+
+            function handleSwipeGesture() {
+                const deltaX = touchEndX - touchStartX;
+                const deltaY = touchEndY - touchStartY;
+                const minSwipeDistance = 55; // Minimum horizontal swipe threshold in px
+
+                // Only trigger if horizontal swipe is dominant over vertical scroll
+                if (Math.abs(deltaX) > minSwipeDistance && Math.abs(deltaX) > Math.abs(deltaY) * 1.4) {
+                    const activePanel = document.querySelector('.tab-panel.active');
+                    if (!activePanel) return;
+
+                    const currentIndex = tabIds.indexOf(activePanel.id);
+                    if (currentIndex === -1) return;
+
+                    if (deltaX < 0) {
+                        // Swiped Left -> Go to Next Tab
+                        if (currentIndex < tabIds.length - 1) {
+                            activateTab(tabIds[currentIndex + 1], true, 'next');
+                        }
+                    } else {
+                        // Swiped Right -> Go to Previous Tab
+                        if (currentIndex > 0) {
+                            activateTab(tabIds[currentIndex - 1], true, 'prev');
+                        }
+                    }
+                }
+            }
+
+            // Initial load check from URL hash
+            const currentHash = window.location.hash;
+            if (currentHash && document.querySelector(currentHash)?.classList.contains('tab-panel')) {
+                activateTab(currentHash, false);
+            } else {
+                activateTab('terms-of-use', false);
+            }
+
+            // Browser back/forward button support
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash || '#terms-of-use';
+                activateTab(hash, false);
+            });
+        });
+    </script>
+</body>
+</html>

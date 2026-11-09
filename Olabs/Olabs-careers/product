@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Products &amp; Technology Stack — Orain Labs</title>
+    <meta name="description" content="Explore the ORAIN technology stack: ORAIN Forge CAD kernel, PAXX 1.0 API, Geometric Engine planning layer, ERE reasoning, and VSE interactive visualization.">
+
+    <!-- Premium Typography: Instrument Sans for UI, JetBrains Mono for Technical Data -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* =====================================================================
+           1. CORE SYSTEM & VARIABLES (DARK MODE DEFAULT)
+           ===================================================================== */
+        :root {
+            --bg-base: #0a0a0a;
+            --bg-base-rgb: 10, 10, 10;
+            --bg-soft: #141414;
+            --bg-surface: #1e1e1e;
+
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+
+            --line: #2a2a2a;
+            --line-light: #1a1a1a;
+
+            --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --nav-height: 80px;
+            --subnav-height: 52px;
+        }
+
+        body.light-mode {
+            --bg-base: #ffffff;
+            --bg-base-rgb: 255, 255, 255;
+            --bg-soft: #fcfcfc;
+            --bg-surface: #f5f5f4;
+
+            --text-primary: #000000;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+
+            --line: #e5e5e5;
+            --line-light: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-sans);
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-base);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        /* =====================================================================
+           2. TYPOGRAPHY & SHARED UTILITIES
+           ===================================================================== */
+        .container {
+            width: min(1320px, calc(100% - 4rem));
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .label-sm {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        .headline-xl {
+            color: var(--text-primary);
+            font-size: clamp(2.4rem, 5vw, 4.6rem);
+            font-weight: 500;
+            letter-spacing: -0.04em;
+            line-height: 1.12;
+            margin-bottom: 1.5rem;
+        }
+
+        .headline-md {
+            color: var(--text-primary);
+            font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .headline-sm {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.8rem;
+        }
+
+        .body-lg {
+            color: var(--text-secondary);
+            font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+            font-weight: 400;
+            line-height: 1.65;
+            max-width: 780px;
+        }
+
+        .body-md {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .link-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding-bottom: 3px;
+            border-bottom: 1px solid var(--text-primary);
+            margin-top: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: var(--font-sans);
+        }
+
+        .link-cta:hover {
+            opacity: 0.6;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================================
+           3. NAVIGATION
+           ===================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 100;
+            background: rgba(var(--bg-base-rgb), 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-container {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+        
+        .theme-toggle-btn:hover {
+            background-color: var(--line-light);
+        }
+
+        /* Sticky Products Sub-Navigation */
+        .subnav-bar {
+            position: sticky;
+            top: var(--nav-height);
+            width: 100%;
+            height: var(--subnav-height);
+            z-index: 90;
+            background: rgba(var(--bg-base-rgb), 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line-light);
+        }
+
+        .subnav-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            height: 100%;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .subnav-container::-webkit-scrollbar { display: none; }
+
+        .subnav-link {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.4rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .subnav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .subnav-link.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--text-primary);
+        }
+
+        /* =====================================================================
+           4. TAB PANEL SYSTEM
+           ===================================================================== */
+        .tab-panel {
+            display: none;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: panelFadeIn 0.35s ease forwards;
+        }
+
+        @keyframes panelFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .product-hero {
+            padding-top: calc(var(--nav-height) + 2.5rem);
+            padding-bottom: 6rem;
+            border-bottom: 1px solid var(--line-light);
+            background: radial-gradient(circle at 80% 20%, var(--bg-soft) 0%, var(--bg-base) 70%);
+        }
+
+        .section-block {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--line-light);
+        }
+
+        .tab-panel > .section-block:first-child:not(.product-hero) {
+            padding-top: calc(var(--nav-height) + 2.5rem);
+        }
+
+        /* =====================================================================
+           5. PRODUCT ARCHITECTURE, CARDS & GRIDS
+           ===================================================================== */
+        .cards-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem;
+            margin-top: 3.5rem;
+        }
+
+        .cards-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        .product-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 2.5rem 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 300px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-3px);
+        }
+
+        .badge-mono {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .tag-footer {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            border-top: 1px solid var(--line-light);
+            padding-top: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .pipeline-strip {
+            margin-top: 4rem;
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .pipeline-step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .pipeline-arrow {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .spec-list {
+            list-style: none;
+            margin-top: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .spec-list li {
+            font-family: var(--font-mono);
+            font-size: 0.84rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .spec-list li::before {
+            content: "•";
+            color: var(--text-muted);
+        }
+
+        .feature-tag-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.8rem;
+        }
+
+        .feature-pill {
+            background: var(--bg-base);
+            border: 1px solid var(--line);
+            padding: 0.5rem 0.9rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-primary);
+        }
+
+        .code-window {
+            background: var(--bg-base);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            line-height: 1.7;
+            color: #d1d5db;
+            overflow-x: auto;
+            margin-top: 1.5rem;
+        }
+
+        .code-window .code-comment { color: var(--text-muted); }
+        .code-window .code-key { color: #93c5fd; }
+        .code-window .code-str { color: #86efac; }
+        .code-window .code-num { color: #fca5a5; }
+
+        .statement-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* =====================================================================
+           6. FOOTER
+           ===================================================================== */
+        footer {
+            padding: 6rem 0 3rem;
+            background: var(--bg-base);
+            border-top: 1px solid var(--line);
+            font-size: 0.85rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .footer-brand {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .footer-brand + p {
+            margin-top: 0.5rem;
+            max-width: 220px;
+            color: var(--text-secondary);
+        }
+
+        .footer-email {
+            display: inline-block;
+            margin-top: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 2px;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 0.3rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            padding: 0.2rem 0;
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-muted);
+            border-top: 1px solid var(--line-light);
+            padding-top: 2rem;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .cards-grid-3, .cards-grid-2 { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .container { width: calc(100% - 2.5rem); }
+            .pipeline-strip { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+            .statement-card { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Primary Navigation -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">ORAIN LABS</a>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="product" class="active">Build with Orain</a>
+                <a href="business">Business</a>
+                <a href="company">Company</a>
+                <a href="help">Help Center</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="business#contact-sales" class="nav-cta" style="font-size: 0.85rem;">Contact Sales</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-Navigation for Product Stack -->
+    <nav class="subnav-bar" aria-label="Product subsections">
+        <div class="container subnav-container">
+            <a href="#orain-stack" class="subnav-link active">ORAIN Stack</a>
+            <a href="#orain-forge" class="subnav-link">ORAIN Forge</a>
+            <a href="#paxx" class="subnav-link">PAXX 1.0 API</a>
+            <a href="#geometric-engine" class="subnav-link">Geometric Engine</a>
+            <a href="#reasoning-viz" class="subnav-link">ERE &amp; VSE</a>
+        </div>
+    </nav>
+
+    <main id="product-tab-root">
+        <!-- =============================================================
+             1. TAB: THE ORAIN STACK & OVERVIEW
+             ============================================================= -->
+        <div id="orain-stack" class="tab-panel active">
+            <!-- Hero -->
+            <section class="product-hero">
+                <div class="container">
+                    <span class="label-sm">ORAIN &bull; THE GEOMETRIC INTELLIGENCE</span>
+                    <h1 class="headline-xl">One System. One Intelligence.</h1>
+                    <p class="body-lg">
+                        ORAIN is an AI-native engineering system designed to understand engineering intent, reason about design, construct precise geometry, and make complex engineering workflows more intelligent.
+                    </p>
+                    <div style="margin-top: 2rem;">
+                        <a href="#orain-forge" class="link-cta link-tab">Explore ORAIN Forge Construction Kernel &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Unified Stack Architecture Section -->
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">SPECIALIZED INTELLIGENCE LAYERS</span>
+                    <h2 class="headline-md">Behind ORAIN: The Unified Technology Stack</h2>
+                    <p class="body-lg">
+                        ORAIN is not a collection of disconnected engineering tools. It is a unified intelligence system built from specialized layers that allow machines to move from intent to reasoning, reasoning to geometry, and geometry to an engineering-ready representation.
+                    </p>
+
+                    <div class="cards-grid-3">
+                        <!-- Layer 01: PAXX 1.0 -->
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">INTERFACE LAYER // 01</span>
+                                <h3 class="headline-sm">PAXX 1.0</h3>
+                                <p class="body-md">
+                                    Exposes ORAIN's capabilities through structured APIs, connecting external software and platforms to the underlying intelligence stack.
+                                </p>
+                            </div>
+                            <div class="tag-footer">APPLICATION &rarr; PAXX &rarr; ORAIN</div>
+                        </div>
+
+                        <!-- Layer 02: ERE -->
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">REASONING LAYER // 02</span>
+                                <h3 class="headline-sm">ERE Engine</h3>
+                                <p class="body-md">
+                                    Evaluates design intent, constraints, relationships, and feasibility before geometry is constructed to determine what makes engineering sense.
+                                </p>
+                            </div>
+                            <div class="tag-footer">ENGINEERING REASONING ENGINE</div>
+                        </div>
+
+                        <!-- Layer 03: Geometric Engine -->
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">PLANNING LAYER // 03</span>
+                                <h3 class="headline-sm">Geometric Engine</h3>
+                                <p class="body-md">
+                                    Translates engineering reasoning into structured geometric representations, organizing features, dimensions, constraints, and dependencies.
+                                </p>
+                            </div>
+                            <div class="tag-footer">GEOMETRIC PLANNING LAYER</div>
+                        </div>
+
+                        <!-- Layer 04: ORAIN Forge -->
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">CONSTRUCTION LAYER // 04</span>
+                                <h3 class="headline-sm">ORAIN Forge</h3>
+                                <p class="body-md">
+                                    Executes the geometric plan and constructs precise engineering geometry using robust, topology-aware CAD-kernel technology.
+                                </p>
+                            </div>
+                            <div class="tag-footer">CAD-KERNEL B-REP EXECUTION</div>
+                        </div>
+
+                        <!-- Layer 05: VSE -->
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">VISUALIZATION LAYER // 05</span>
+                                <h3 class="headline-sm">VSE Sub-Engine</h3>
+                                <p class="body-md">
+                                    Provides the visual representation layer, allowing engineers to inspect and interact with design states while remaining decoupled from kernel logic.
+                                </p>
+                            </div>
+                            <div class="tag-footer">VISUALIZATION &amp; INSPECTION</div>
+                        </div>
+
+                        <!-- Architecture Statement -->
+                        <div class="product-card" style="background: var(--bg-base); border-color: var(--line);">
+                            <div>
+                                <span class="badge-mono">THE PARADIGM</span>
+                                <h3 class="headline-sm">Intent to Representation</h3>
+                                <p class="body-md">
+                                    Enabling engineering knowledge, physical reasoning, and B-Rep geometry to exist within the same computational loop.
+                                </p>
+                            </div>
+                            <div class="tag-footer">GEOMETRIC INTELLIGENCE</div>
+                        </div>
+                    </div>
+
+                    <!-- Flow Strip -->
+                    <div class="pipeline-strip">
+                        <div class="pipeline-step"><span>01</span> Intent</div>
+                        <span class="pipeline-arrow">&rarr;</span>
+                        <div class="pipeline-step"><span>02</span> Reasoning</div>
+                        <span class="pipeline-arrow">&rarr;</span>
+                        <div class="pipeline-step"><span>03</span> Geometric Planning</div>
+                        <span class="pipeline-arrow">&rarr;</span>
+                        <div class="pipeline-step"><span>04</span> Geometry Construction</div>
+                        <span class="pipeline-arrow">&rarr;</span>
+                        <div class="pipeline-step"><span>05</span> Visualization</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             2. TAB: ORAIN FORGE
+             ============================================================= -->
+        <div id="orain-forge" class="tab-panel">
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">CONSTRUCTION LAYER &bull; KERNEL TECHNOLOGY</span>
+                    <h1 class="headline-xl">ORAIN Forge</h1>
+                    <p class="body-lg">
+                        The geometry construction and execution technology behind ORAIN. Forge is designed to transform structured geometric instructions into precise, engineering-grade CAD geometry through robust computational geometry and CAD-kernel technology.
+                    </p>
+
+                    <div class="statement-card" style="margin-top: 3.5rem;">
+                        <span class="label-sm">CORE MANDATE</span>
+                        <h2 class="headline-md">From Geometric Intent to Physical Geometry</h2>
+                        <p class="body-lg">
+                            Generating engineering geometry is fundamentally different from generating a visual approximation. A usable engineering model must maintain precise dimensions, topology, relationships, and geometric integrity. Forge sits at the point where geometric intelligence becomes physical geometry.
+                        </p>
+                        <div class="tag-footer" style="font-size: 0.85rem;">
+                            Geometric Plan &rarr; CAD Operations &rarr; B-Rep Geometry &rarr; Engineering Output
+                        </div>
+                    </div>
+
+                    <div class="cards-grid-2">
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">ENGINEERING RIGOR</span>
+                                <h3 class="headline-sm">Built for Engineering Geometry</h3>
+                                <p class="body-md">
+                                    Forge provides the computational foundation required to construct what the system has reasoned and planned:
+                                </p>
+                                <ul class="spec-list">
+                                    <li>Precise geometric construction</li>
+                                    <li>Feature and operation execution</li>
+                                    <li>Topological consistency &amp; manifold integrity</li>
+                                    <li>Solid and surface modeling</li>
+                                    <li>Automated geometry validation</li>
+                                    <li>CAD-compatible representations</li>
+                                    <li>Engineering file generation (STEP, IGES, B-Rep)</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">PIPELINE INTEGRATION</span>
+                                <h3 class="headline-sm">Built as Infrastructure</h3>
+                                <p class="body-md">
+                                    Forge does not determine what an engineer should design — that intelligence comes from the broader ORAIN system. Instead, Forge acts as the reliable bridge between intelligent geometric planning and deterministic geometry construction.
+                                </p>
+                            </div>
+                            <div class="statement-card" style="margin-top: 2rem; background: var(--bg-base);">
+                                <p class="body-md" style="color: var(--text-primary); font-family: var(--font-mono);">
+                                    Engineering Reasoning &rarr; Geometric Planning &rarr; ORAIN Forge &rarr; Engineering Geometry
+                                </p>
+                            </div>
+                            <div class="tag-footer">ORAIN FORGE &bull; WHERE INTELLIGENCE BECOMES GEOMETRY</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             3. TAB: PAXX 1.0 API
+             ============================================================= -->
+        <div id="paxx" class="tab-panel">
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">PROGRAMMATIC ACCESS LAYER</span>
+                    <h1 class="headline-xl">PAXX 1.0</h1>
+                    <p class="body-lg">
+                        The API layer being developed to provide programmatic access to ORAIN's engineering intelligence capabilities. PAXX allows applications, engineering platforms, and internal systems to communicate with ORAIN through structured interfaces.
+                    </p>
+
+                    <div class="cards-grid-2">
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">INTEGRATION CAPABILITIES</span>
+                                <h3 class="headline-sm">Machine-to-Machine Engineering</h3>
+                                <p class="body-md">
+                                    Modern engineering workflows rarely exist inside a single application. Through an API-first architecture, applications interact with ORAIN programmatically rather than relying solely on a graphical interface.
+                                </p>
+                                <ul class="spec-list">
+                                    <li>Geometry generation requests</li>
+                                    <li>Engineering intent processing</li>
+                                    <li>Feature and design representations</li>
+                                    <li>Parametric geometry operations</li>
+                                    <li>Validation workflows</li>
+                                    <li>Engineering data exchange with CAD/CAE tools</li>
+                                </ul>
+                            </div>
+                            <div class="tag-footer">APPLICATION &rarr; PAXX API &rarr; ORAIN INTELLIGENCE &rarr; GEOMETRY SYSTEMS</div>
+                        </div>
+
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">DEVELOPER SPECIFICATION</span>
+                                <h3 class="headline-sm">Built for Integration</h3>
+                                <p class="body-md">
+                                    Developers can integrate with ORAIN through standardized JSON payloads without needing to understand the underlying CAD kernel complexity.
+                                </p>
+                                <div class="code-window">
+<span class="code-comment">// PAXX 1.0 Engineering Payload</span>
+{
+  <span class="code-key">"intent"</span>: <span class="code-str">"Flanged mechanical casing with 6x M5 circular pattern"</span>,
+  <span class="code-key">"constraints"</span>: {
+    <span class="code-key">"wall_thickness_mm"</span>: <span class="code-num">3.5</span>,
+    <span class="code-key">"flange_dia_mm"</span>: <span class="code-num">120.0</span>
+  },
+  <span class="code-key">"output_format"</span>: [<span class="code-str">"brep"</span>, <span class="code-str">"step"</span>]
+}
+                                </div>
+                            </div>
+                            <div class="tag-footer">PAXX 1.0 &bull; AN API FOR ENGINEERING INTELLIGENCE</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             4. TAB: GEOMETRIC ENGINE
+             ============================================================= -->
+        <div id="geometric-engine" class="tab-panel">
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">PLANNING &amp; REPRESENTATION LAYER</span>
+                    <h1 class="headline-xl">Geometric Engine</h1>
+                    <p class="body-lg">
+                        The planning and representation layer responsible for translating engineering reasoning into structured geometric operations. It sits between engineering intelligence and geometry construction, turning abstract design intent into an executable representation.
+                    </p>
+
+                    <div class="statement-card" style="margin-top: 3.5rem;">
+                        <span class="label-sm">FROM REASONING TO STRUCTURE</span>
+                        <h2 class="headline-md">The Language of Engineering Geometry</h2>
+                        <p class="body-lg">
+                            Engineering intent cannot be directly converted into geometry. It first needs to be organized through the language of engineering features, dimensions, constraints, relationships, operations, and dependencies.
+                        </p>
+                        <div class="feature-tag-grid">
+                            <span class="feature-pill">Features</span>
+                            <span class="feature-pill">Dimensions</span>
+                            <span class="feature-pill">Constraints</span>
+                            <span class="feature-pill">Relationships</span>
+                            <span class="feature-pill">Operations</span>
+                            <span class="feature-pill">Dependencies</span>
+                        </div>
+                    </div>
+
+                    <div class="cards-grid-2">
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">FEATURE-BASED PLANNING</span>
+                                <h3 class="headline-sm">Structured Parametric Modeling</h3>
+                                <p class="body-md">
+                                    Rather than treating a model as an arbitrary collection of surfaces, the Geometric Engine focuses on understanding how the geometry is constructed:
+                                </p>
+                                <ul class="spec-list">
+                                    <li>Base features &amp; 2D sketch profiles</li>
+                                    <li>Parametric extrusions &amp; revolutions</li>
+                                    <li>Cuts, pockets, and Boolean cavities</li>
+                                    <li>Fillets, chamfers, and edge treatments</li>
+                                    <li>Parent-child feature dependencies</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">PIPELINE BRIDGE</span>
+                                <h3 class="headline-sm">Connecting Intelligence to CAD</h3>
+                                <p class="body-md">
+                                    ERE determines whether the engineering intent makes sense. The Geometric Engine determines how that intent should be represented geometrically. Forge then executes the resulting geometric operations.
+                                </p>
+                            </div>
+                            <div class="statement-card" style="margin-top: 2rem; background: var(--bg-base);">
+                                <p class="body-md" style="color: var(--text-primary); font-family: var(--font-mono);">
+                                    Engineering Intent &rarr; ERE &rarr; Geometric Engine &rarr; ORAIN Forge &rarr; Geometry
+                                </p>
+                            </div>
+                            <div class="tag-footer">GEOMETRIC ENGINE &bull; TURNING REASONING INTO STRUCTURE</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             5. TAB: REASONING (ERE) & VISUALIZATION (VSE)
+             ============================================================= -->
+        <div id="reasoning-viz" class="tab-panel">
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">REASONING &amp; VISUALIZATION LAYERS</span>
+                    <h1 class="headline-xl">ERE &amp; VSE Engines</h1>
+                    <p class="body-lg">
+                        The reasoning brain and interactive presentation layers that complete the ORAIN Geometric Intelligence architecture.
+                    </p>
+
+                    <div class="cards-grid-2" style="margin-top: 3.5rem;">
+                        <!-- Module 1: ERE -->
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">THE REASONING LAYER</span>
+                                <h3 class="headline-sm">Engineering Reasoning Engine (ERE)</h3>
+                                <p class="body-md">
+                                    The Engineering Reasoning Engine forms the reasoning layer of ORAIN[cite: 2, 4]. ERE evaluates design intent, engineering constraints, relationships, dependencies, and physical feasibility before geometry is constructed.
+                                </p>
+                                <p class="body-md" style="margin-top: 1rem;">
+                                    Its role is to determine whether a proposed design makes engineering sense and what reasoning should guide its downstream construction.
+                                </p>
+                            </div>
+                            <div class="tag-footer">ERE DETERMINES WHAT MAKES ENGINEERING SENSE</div>
+                        </div>
+
+                        <!-- Module 2: VSE -->
+                        <div class="product-card">
+                            <div>
+                                <span class="badge-mono">THE VISUALIZATION LAYER</span>
+                                <h3 class="headline-sm">Visualization Sub-Engine (VSE)</h3>
+                                <p class="body-md">
+                                    The Visualization Sub-Engine provides the visual representation of ORAIN's outputs and intermediate design states.
+                                </p>
+                                <p class="body-md" style="margin-top: 1rem;">
+                                    VSE allows engineers to see, inspect, and interact with generated geometry while remaining strictly decoupled from the underlying reasoning and kernel construction systems[cite: 2, 4].
+                                </p>
+                            </div>
+                            <div class="tag-footer">VSE MAKES THE RESULT VISIBLE AND INTERACTIVE</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">ORAIN LABS</div>
+                    <p>The Geometric Intelligence Company.</p>
+                    <a href="mailto:contact@orainlabs.io" class="footer-email">contact@orainlabs.io</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="#orain-forge" class="link-tab">Orain Forge</a>
+                    <a href="#paxx" class="link-tab">Paxx 1.0 - API</a>
+                    <a href="#geometric-engine" class="link-tab">Geometric Engine</a>
+                    <a href="#orain-stack" class="link-tab">ORAIN Stack</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="careers" target="_blank" rel="noopener noreferrer">Careers</a>
+                    <a href="company#about">About us</a>
+                    <a href="mailto:contact@orainlabs.io">Support</a>
+                    <a href="index#research">Research</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Business</h4>
+                    <a href="business#overview">Overview</a>
+                    <a href="business#solutions">Solution</a>
+                    <a href="business#resources">Resources</a>
+                    <a href="business#stories">Engineers stories</a>
+                    <a href="business#contact-sales">Contact sales</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Help Center</h4>
+                    <a href="help#orain">Getting Started</a>
+                    <a href="help#developer">PAXX API Support</a>
+                    <a href="help#technology">Kernel Architecture</a>
+                    <a href="help#enterprise">Enterprise &amp; Security</a>
+                    <a href="help#support">Contact Support</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>Orain Labs &copy; 2026</div>
+                <div>Geometric Intelligence for Engineering</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Tab Navigation & Theme Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* 1. Theme Toggle */
+            const themeBtn = document.getElementById('theme-toggle');
+            const sunIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>`;
+            const moonIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>`;
+
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                themeBtn.innerHTML = document.body.classList.contains('light-mode') ? moonIcon : sunIcon;
+            });
+
+            /* 2. Tab Section Switching System */
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            const subnavLinks = document.querySelectorAll('.subnav-link');
+            const tabTriggerLinks = document.querySelectorAll('a[href^="#"]');
+
+            function triggerReveals(panel) {
+                const reveals = panel.querySelectorAll('.reveal');
+                reveals.forEach(el => el.classList.add('visible'));
+            }
+
+            function activateTab(tabId, updateHash = true) {
+                const cleanId = tabId.replace('#', '');
+                const targetPanel = document.getElementById(cleanId);
+                
+                if (!targetPanel || !targetPanel.classList.contains('tab-panel')) return;
+
+                tabPanels.forEach(panel => panel.classList.remove('active'));
+                targetPanel.classList.add('active');
+                triggerReveals(targetPanel);
+
+                subnavLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${cleanId}`) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                if (updateHash) {
+                    history.pushState(null, '', `#${cleanId}`);
+                }
+            }
+
+            tabTriggerLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href');
+                    if (targetId && targetId.startsWith('#') && targetId.length > 1) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement && targetElement.classList.contains('tab-panel')) {
+                            e.preventDefault();
+                            activateTab(targetId);
+                        }
+                    }
+                });
+            });
+
+            const currentHash = window.location.hash;
+            if (currentHash && document.querySelector(currentHash)?.classList.contains('tab-panel')) {
+                activateTab(currentHash, false);
+            } else {
+                activateTab('orain-stack', false);
+            }
+
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash || '#orain-stack';
+                activateTab(hash, false);
+            });
+        });
+    </script>
+</body>
+</html>

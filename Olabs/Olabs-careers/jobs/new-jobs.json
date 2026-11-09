@@ -1,0 +1,374 @@
+{
+    "jobs": [
+        {
+            "id": "cad-kernel-engineer-intern",
+            "title": "CAD Kernel Engineer",
+            "slug": "cad-kernel-engineer",
+            "location": "Remote, IN",
+            "employmentType": "Internship",
+            "experience": "Intern",
+            "department": "Core Geometry Intelligence Team",
+            "category": "Geometry / CAD",
+            "status": "open",
+            "summary": "Work on the geometry engine that transforms AI-generated engineering instructions into valid, manufacturable CAD models and industry-standard file formats.",
+            "about": "ORAIN is building an AI-native engineering platform capable of generating manufacturable CAD geometry directly from natural language instructions. As a CAD Kernel Engineer, you will work on the geometry engine that transforms AI-generated programs into valid CAD models and industry-standard file formats.",
+            "responsibilities": [
+                "Develop and maintain CAD kernel integrations and geometry pipelines.",
+                "Work with STEP, IGES, BREP and other CAD file structures.",
+                "Implement parametric modelling workflows.",
+                "Build geometry validation and repair systems.",
+                "Design feature tree and topology handling mechanisms.",
+                "Collaborate closely with AI researchers to convert generated geometry instructions into executable CAD operations.",
+                "Improve geometry robustness, manufacturability and interoperability."
+            ],
+            "requiredSkills": [
+                "Strong experience with OpenCascade or equivalent CAD kernels.",
+                "Deep understanding of CAD data structures and geometric modelling.",
+                "Experience with STEP, IGES and BREP formats.",
+                "Knowledge of topology and feature-based modelling.",
+                "Familiarity with SolidWorks API, FreeCAD internals or similar CAD frameworks.",
+                "Strong C++ development experience."
+            ],
+            "preferredQualifications": [
+                "Experience building CAD software or CAD plugins.",
+                "Experience in CAE software development.",
+                "Contributions to geometry processing or CAD open-source projects."
+            ],
+            "preferredBackground": [
+                "Computer Science",
+                "Mechanical Engineering",
+                "Computational Geometry",
+                "CAD / CAE",
+                "Software Engineering"
+            ],
+            "techStack": [
+                "C++",
+                "OpenCascade",
+                "STEP",
+                "IGES",
+                "BREP",
+                "CAD",
+                "Computational Geometry"
+            ],
+            "application": {
+                "resume": true,
+                "portfolio": true,
+                "github": true,
+                "linkedin": true
+            }
+        },
+        {
+            "id": "ai-research-engineer-intern",
+            "title": "AI Research Engineer",
+            "slug": "ai-research-engineer",
+            "location": "Remote, IN",
+            "employmentType": "Internship",
+            "experience": "Intern",
+            "department": "Artificial Intelligence Research",
+            "category": "AI / Research",
+            "status": "open",
+            "summary": "Research and develop multimodal AI systems capable of understanding engineering intent and generating geometry-aware outputs for CAD generation.",
+            "about": "You will design and train large multimodal AI systems capable of understanding engineering intent and generating geometry-aware outputs for CAD generation.",
+            "responsibilities": [
+                "Fine-tune large language and multimodal models.",
+                "Build geometry datasets and synthetic training pipelines.",
+                "Develop model evaluation frameworks.",
+                "Implement long-context handling mechanisms.",
+                "Research geometry tokenisation approaches.",
+                "Improve model accuracy, reasoning and generation capabilities.",
+                "Work closely with geometry and mechanical engineering teams."
+            ],
+            "requiredSkills": [
+                "Strong knowledge of PyTorch.",
+                "Experience with Transformer architectures.",
+                "Experience with LoRA and QLoRA fine-tuning techniques.",
+                "Understanding of distributed model training.",
+                "Familiarity with RLHF and DPO optimisation techniques.",
+                "Experience creating synthetic datasets."
+            ],
+            "preferredQualifications": [
+                "Experience fine-tuning LLMs.",
+                "Experience with multimodal models.",
+                "Experience with code generation systems.",
+                "Experience in engineering AI applications."
+            ],
+            "preferredBackground": [
+                "Artificial Intelligence",
+                "Machine Learning",
+                "Computer Science",
+                "Computational Engineering"
+            ],
+            "techStack": [
+                "Python",
+                "PyTorch",
+                "Transformers",
+                "LLMs",
+                "Multimodal Models",
+                "LoRA",
+                "QLoRA",
+                "Distributed Training"
+            ],
+            "application": {
+                "resume": true,
+                "portfolio": true,
+                "github": true,
+                "linkedin": true,
+                "publications": true
+            }
+        },
+        {
+            "id": "computational-geometry-research-engineer-intern",
+            "title": "Computational Geometry Research Engineer",
+            "slug": "computational-geometry-research-engineer",
+            "location": "Remote, IN",
+            "employmentType": "Internship",
+            "experience": "Intern",
+            "department": "Geometry Intelligence Research",
+            "category": "Geometry / Research",
+            "status": "open",
+            "summary": "Research mathematical representations and reasoning systems for engineering geometry, focusing on topology, graph structures and geometric intelligence algorithms.",
+            "about": "This role focuses on the mathematical representation and reasoning of geometry. Unlike traditional CAD engineering roles, this position deals with topology, graph structures and geometric intelligence algorithms.",
+            "responsibilities": [
+                "Develop BREP understanding systems.",
+                "Design graph-based geometry representations.",
+                "Work on surface and topology representations.",
+                "Build geometric reasoning systems.",
+                "Implement constraint-solving algorithms.",
+                "Develop geometry optimisation pipelines.",
+                "Support AI researchers with geometry abstractions suitable for model training."
+            ],
+            "requiredSkills": [
+                "Strong understanding of Computational Geometry.",
+                "Experience with graph algorithms.",
+                "Knowledge of geometry processing techniques.",
+                "Experience with mesh processing libraries.",
+                "Strong mathematical background in geometry and optimisation.",
+                "Proficiency in C++, Python or both."
+            ],
+            "preferredQualifications": [
+                "Experience in geometry processing research.",
+                "Experience in computer graphics or robotics.",
+                "Publications in geometry, graphics or computational design are highly desirable."
+            ],
+            "preferredBackground": [
+                "Mechanical Engineering",
+                "Computer Graphics",
+                "Robotics",
+                "Computational Geometry",
+                "Geometry Processing"
+            ],
+            "techStack": [
+                "C++",
+                "Python",
+                "Computational Geometry",
+                "Graph Algorithms",
+                "BREP",
+                "Topology",
+                "Mesh Processing",
+                "Optimisation"
+            ],
+            "application": {
+                "resume": true,
+                "portfolio": true,
+                "github": true,
+                "linkedin": true,
+                "publications": true
+            }
+        },
+        {
+            "id": "mechanical-design-engineer-intern",
+            "title": "Mechanical Design Engineer",
+            "slug": "mechanical-design-engineer",
+            "location": "Remote, IN",
+            "employmentType": "Internship",
+            "experience": "Intern",
+            "department": "Engineering Validation Team",
+            "category": "Mechanical Engineering",
+            "status": "open",
+            "summary": "Provide the engineering ground truth required to ensure AI-generated designs are technically sound, practical and manufacturable.",
+            "about": "Mechanical Design Engineers act as ORAIN's engineering ground truth layer. They provide the design knowledge, engineering standards and validation required to ensure generated outputs are practical and manufacturable.",
+            "responsibilities": [
+                "Create high-quality engineering datasets.",
+                "Validate AI-generated designs.",
+                "Provide engineering reasoning and feedback.",
+                "Define design standards and best practices.",
+                "Review manufacturability and production feasibility.",
+                "Assist with benchmarking and evaluation frameworks.",
+                "Support development of engineering design guidelines."
+            ],
+            "requiredSkills": [
+                "Strong experience with SolidWorks, CATIA or Siemens NX.",
+                "Understanding of manufacturing processes.",
+                "Knowledge of Design for Manufacturing (DFM) principles.",
+                "Experience with GD&T and engineering standards.",
+                "Ability to review complex assemblies and components."
+            ],
+            "preferredQualifications": [
+                "Experience in aerospace, automotive or industrial product design.",
+                "Experience working with simulation or CAE tools.",
+                "Experience creating engineering datasets or design automation systems."
+            ],
+            "preferredBackground": [
+                "Mechanical Engineering",
+                "Aerospace Engineering",
+                "Automotive Engineering",
+                "Industrial Design",
+                "Manufacturing Engineering"
+            ],
+            "techStack": [
+                "SolidWorks",
+                "CATIA",
+                "Siemens NX",
+                "CAD",
+                "GD&T",
+                "DFM",
+                "CAE"
+            ],
+            "application": {
+                "resume": true,
+                "portfolio": true,
+                "linkedin": true
+            }
+        },
+        {
+            "id": "full-stack-web-developer-intern",
+            "title": "Full Stack Web Developer Intern",
+            "slug": "full-stack-web-developer",
+            "location": "Remote, IN",
+            "employmentType": "Internship",
+            "experience": "0-1 Yrs",
+            "department": "Software",
+            "category": "Software",
+            "status": "open",
+            "summary": "Orain Labs is developing next-generation AI-powered engineering software. We\\'re looking for a Full Stack Web Developer Intern who enjoys building modern web applications and wants hands-on experience developing production-ready software.",
+            "about": "You'll work on both frontend and backend systems, helping build scalable applications that power our AI products.",
+            "responsibilities": [
+                "Develop responsive frontend interfaces.",
+                "Build backend APIs and business logic.",
+                "Integrate frontend applications with backend services.",
+                "Design and optimize databases.",
+                "Build reusable and scalable software components.",
+                "Improve application performance and security.",
+                "Collaborate with AI engineers to integrate AI features.",
+                "Write clean, maintainable, and production-ready code."
+            ],
+            "requiredSkills": [
+                "Required Skills:",
+                "Frontend",
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "React",
+                "Backend",
+                "PHP",
+                "Node.js",
+                "Java (Optional)",
+                "Additional Skills",
+                "Git & GitHub",
+                "REST APIs",
+                "Basic Database Knowledge (MySQL/PostgreSQL)"
+            ],
+            "preferredQualifications": [
+                "Responsive UI Design",
+                "Authentication & Authorization",
+                "Linux",
+                "Basic DevOps",
+                "Performance Optimization",
+                "Ideal Candidate",
+                "Passionate about web technologies.",
+                "Strong problem-solving mindset.",
+                "Willing to learn and adapt quickly.",
+                "Comfortable working in a startup environment.",
+                "Interested in building products from the ground up."
+            ],
+            "preferredBackground": [
+                "Responsive UI Design",
+                "Authentication & Authorization",
+                "Linux",
+                "Basic DevOps",
+                "Performance Optimization",
+                "Ideal Candidate",
+                "Passionate about web technologies.",
+                "Strong problem-solving mindset.",
+                "Willing to learn and adapt quickly.",
+                "Comfortable working in a startup environment.",
+                "Interested in building products from the ground up."
+            ],
+            "techStack": [
+                "HTML",
+                "CSS",
+                "JavaScript",
+                "React",
+                "PHP",
+                "Node.js",
+                "Full Stack Development"
+            ],
+            "application": {
+                "resume": true,
+                "portfolio": true,
+                "github": true,
+                "linkedin": true
+            }
+        },
+        {
+            "id": "python-developer-intern",
+            "title": "Python Developer Intern",
+            "slug": "python-developer-intern",
+            "location": "Remote, IN",
+            "employmentType": "Internship",
+            "experience": "0-1 Yrs",
+            "department": "Software",
+            "category": "Software",
+            "status": "open",
+            "summary": "We're looking for a Python Developer Intern who enjoys solving challenging problems and wants to work on real-world AI applications.\r\n\r\nWhat You'll Work On\r\n\r\n* Develop Python applications and internal tools\r\n* Build Machine Learning pipelines and models\r\n* Work on web scraping and large-scale data collection\r\n* Develop automation scripts to improve engineering workflows\r\n* Create, optimize, and deploy ML models, including ONNX models\r\n* Collaborate with AI engineers on research and product development\r\n* Write clean, maintainable, and scalable code\r\n\r\nWe're looking for a Python Developer Intern who enjoys solving challenging problems and wants to work on real-world AI applications.",
+            "about": "At Orain Labs, we're building the next generation of AI-powered engineering software. Our mission is to develop intelligent systems that help engineers design, automate, and innovate faster.",
+            "responsibilities": [
+                "✔️ Strong knowledge of Python",
+                "✔️ Machine Learning fundamentals",
+                "✔️ Experience with Web Scraping",
+                "✔️ Python Automation",
+                "✔️ Experience working with ONNX models or model conversion",
+                "✔️ Git & GitHub",
+                "✔️ Good problem-solving skills"
+            ],
+            "requiredSkills": [
+                "* Computer Vision",
+                "* NLP",
+                "* FastAPI or Flask",
+                "* Docker",
+                "* Linux",
+                "* Experience with APIs"
+            ],
+            "preferredQualifications": [
+                "Computer Vision",
+                "NLP",
+                "FastAPI or Flask",
+                "Docker",
+                "Linux",
+                "REST APIs",
+                "Ideal Candidate"
+            ],
+            "preferredBackground": [
+                "Passionate about AI and emerging technologies.",
+                "Enjoys solving challenging technical problems.",
+                "Curious, self-driven, and eager to learn.",
+                "Comfortable working in a startup environment.",
+                "Able to work independently and collaborate with a team"
+            ],
+            "techStack": [
+                "Python",
+                "Machine Learning",
+                "AI",
+                "Automation",
+                "Web Scraping",
+                "ONNX",
+                "Research"
+            ],
+            "application": {
+                "resume": true,
+                "github": true,
+                "linkedin": true
+            }
+        }
+    ]
+}

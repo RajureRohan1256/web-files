@@ -1,0 +1,77 @@
+[
+    {
+        "id": "app_6aea135d0838f",
+        "appliedAt": "2026-11-03T17:01:17+00:00",
+        "positionApplied": {
+            "title": "AI Research Engineer",
+            "roleId": "ai-research-engineer",
+            "category": "AI / Research"
+        },
+        "personalDetails": {
+            "legalName": "Praveen Kumar",
+            "preferredName": "",
+            "email": "praveenthakur180109@gmail.com",
+            "phone": "+91 8302789850",
+            "location": "New Delhi",
+            "startDate": "Immediately"
+        },
+        "eligibility": {
+            "authorizedToWork": "No",
+            "localOffice3Days": "No",
+            "visaSponsorship": "Yes"
+        },
+        "additionalInfo": "",
+        "resumePath": "applications/resumes/ai-research-engineer/1793725277_6aea135d081a0_Resume.pdf",
+        "confirmedAgreement": true
+    },
+    {
+        "id": "app_6aeac5208ddb3",
+        "appliedAt": "2026-11-04T05:39:44+00:00",
+        "positionApplied": {
+            "title": "AI Research Engineer",
+            "roleId": "ai-research-engineer",
+            "category": "AI / Research"
+        },
+        "personalDetails": {
+            "legalName": "Samarth Garg",
+            "preferredName": "Samarth Garg",
+            "email": "samarthgarg8099@gmail.com",
+            "phone": "+917007451423",
+            "location": "Prayagraj, Uttar Pradesh, India",
+            "startDate": "1 day"
+        },
+        "eligibility": {
+            "authorizedToWork": "Yes",
+            "localOffice3Days": "Yes",
+            "visaSponsorship": "No"
+        },
+        "additionalInfo": "",
+        "resumePath": "applications/resumes/ai-research-engineer/1793770784_6aeac5208d48f_Samarth_Garg.pdf",
+        "confirmedAgreement": true
+    },
+    {
+        "id": "app_6aed87e3100d1",
+        "appliedAt": "2026-11-06T07:55:15+00:00",
+        "positionApplied": {
+            "title": "AI Research Engineer",
+            "roleId": "ai-research-engineer",
+            "category": "AI / Research"
+        },
+        "personalDetails": {
+            "legalName": "Rishabh Mudgal",
+            "preferredName": "",
+            "email": "work.mudgal@proton.me",
+            "phone": "+91 8630473979",
+            "location": "Mumbai, India",
+            "startDate": "Immediately"
+        },
+        "eligibility": {
+            "authorizedToWork": "Yes",
+            "localOffice3Days": "Yes",
+            "visaSponsorship": "No"
+        },
+        "additionalInfo": "",
+        "resumePath": "applications/resumes/ai-research-engineer/1793951715_6aed87e30f900_Rishabh_Mudgal_resume.pdf",
+        "confirmedAgreement": true
+    }
+]

@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Research &amp; Foundations — Orain Labs</title>
+    <meta name="description" content="Explore research at Orain Labs: Geometric Intelligence, Engineering Reasoning Engines, computational geometry representations, CAD kernels, and AI-native design systems.">
+
+    <!-- Premium Typography: Instrument Sans for UI, JetBrains Mono for Technical Data -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        /* =====================================================================
+           1. CORE SYSTEM & VARIABLES (DARK MODE DEFAULT)
+           ===================================================================== */
+        :root {
+            --bg-base: #0a0a0a;
+            --bg-base-rgb: 10, 10, 10;
+            --bg-soft: #141414;
+            --bg-surface: #1e1e1e;
+
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+
+            --line: #2a2a2a;
+            --line-light: #1a1a1a;
+
+            --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --nav-height: 80px;
+            --subnav-height: 52px;
+        }
+
+        body.light-mode {
+            --bg-base: #ffffff;
+            --bg-base-rgb: 255, 255, 255;
+            --bg-soft: #fcfcfc;
+            --bg-surface: #f5f5f4;
+
+            --text-primary: #000000;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+
+            --line: #e5e5e5;
+            --line-light: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-sans);
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-base);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        /* =====================================================================
+           2. TYPOGRAPHY & SHARED UTILITIES
+           ===================================================================== */
+        .container {
+            width: min(1320px, calc(100% - 4rem));
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .label-sm {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            font-family: var(--font-mono);
+        }
+
+        .headline-xl {
+            color: var(--text-primary);
+            font-size: clamp(2.4rem, 5vw, 4.6rem);
+            font-weight: 500;
+            letter-spacing: -0.04em;
+            line-height: 1.12;
+            margin-bottom: 1.5rem;
+        }
+
+        .headline-md {
+            color: var(--text-primary);
+            font-size: clamp(1.8rem, 3.2vw, 2.6rem);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 1.25rem;
+        }
+
+        .headline-sm {
+            color: var(--text-primary);
+            font-size: 1.3rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.8rem;
+        }
+
+        .body-lg {
+            color: var(--text-secondary);
+            font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+            font-weight: 400;
+            line-height: 1.65;
+            max-width: 780px;
+        }
+
+        .body-md {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .link-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            padding-bottom: 3px;
+            border-bottom: 1px solid var(--text-primary);
+            margin-top: 1.5rem;
+            cursor: pointer;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            font-family: var(--font-sans);
+        }
+
+        .link-cta:hover {
+            opacity: 0.6;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =====================================================================
+           3. PRIMARY NAVIGATION & RESEARCH SUB-NAV
+           ===================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 100;
+            background: rgba(var(--bg-base-rgb), 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-container {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+        
+        .theme-toggle-btn:hover {
+            background-color: var(--line-light);
+        }
+
+        /* Sticky Research Sub-Navigation */
+        .subnav-bar {
+            position: sticky;
+            top: var(--nav-height);
+            width: 100%;
+            height: var(--subnav-height);
+            z-index: 90;
+            background: rgba(var(--bg-base-rgb), 0.9);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line-light);
+        }
+
+        .subnav-container {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            height: 100%;
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .subnav-container::-webkit-scrollbar { display: none; }
+
+        .subnav-link {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            white-space: nowrap;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.4rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .subnav-link:hover {
+            color: var(--text-primary);
+        }
+
+        .subnav-link.active {
+            color: var(--text-primary);
+            border-bottom-color: var(--text-primary);
+        }
+
+        /* =====================================================================
+           4. TAB PANEL SWITCHING SYSTEM
+           ===================================================================== */
+        .tab-panel {
+            display: none;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            animation: panelFadeIn 0.35s ease forwards;
+        }
+
+        @keyframes panelFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .research-hero {
+            padding-top: calc(var(--nav-height) + 2.5rem);
+            padding-bottom: 6rem;
+            border-bottom: 1px solid var(--line-light);
+            background: radial-gradient(circle at 80% 20%, var(--bg-soft) 0%, var(--bg-base) 70%);
+        }
+
+        .section-block {
+            padding: 6rem 0;
+            border-bottom: 1px solid var(--line-light);
+        }
+
+        .tab-panel > .section-block:first-child:not(.research-hero) {
+            padding-top: calc(var(--nav-height) + 2.5rem);
+        }
+
+        /* =====================================================================
+           5. SECTION & CARD COMPONENTS
+           ===================================================================== */
+        .cards-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        .cards-grid-4 {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 3.5rem;
+        }
+
+        .research-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 2.5rem 2.2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 320px;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .research-card:hover {
+            border-color: var(--text-muted);
+            transform: translateY(-3px);
+        }
+
+        .badge-mono {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            margin-bottom: 1.2rem;
+            display: block;
+        }
+
+        .focus-tag {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-primary);
+            border-top: 1px solid var(--line-light);
+            padding-top: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        .pipeline-strip {
+            margin-top: 4rem;
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 2.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .pipeline-step {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .pipeline-arrow {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .spec-list {
+            list-style: none;
+            margin-top: 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .spec-list li {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .spec-list li::before {
+            content: "•";
+            color: var(--text-muted);
+        }
+
+        .statement-card {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 4px;
+            padding: 3rem 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .question-lead {
+            font-size: 1.35rem;
+            line-height: 1.5;
+            color: var(--text-primary);
+            font-weight: 400;
+        }
+
+        /* Public Sharing Tag Strip */
+        .public-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+            margin-top: 2.5rem;
+        }
+
+        .public-item {
+            background: var(--bg-base);
+            border: 1px solid var(--line);
+            padding: 1.2rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: border-color 0.2s ease, color 0.2s ease;
+        }
+
+        .public-item:hover {
+            border-color: var(--text-muted);
+            color: var(--text-primary);
+        }
+
+        /* =====================================================================
+           6. FOOTER
+           ===================================================================== */
+        footer {
+            padding: 6rem 0 3rem;
+            background: var(--bg-base);
+            border-top: 1px solid var(--line);
+            font-size: 0.85rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .footer-brand {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .footer-brand + p {
+            margin-top: 0.5rem;
+            max-width: 220px;
+            color: var(--text-secondary);
+        }
+
+        .footer-email {
+            display: inline-block;
+            margin-top: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 2px;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 0.3rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            padding: 0.2rem 0;
+            cursor: pointer;
+        }
+
+        .footer-col a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-muted);
+            border-top: 1px solid var(--line-light);
+            padding-top: 2rem;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .cards-grid-2, .cards-grid-4, .public-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .container { width: calc(100% - 2.5rem); }
+            .cards-grid-2, .cards-grid-4, .public-grid { grid-template-columns: 1fr; }
+            .pipeline-strip { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
+            .statement-card { padding: 2rem 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Primary Navigation -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">ORAIN LABS</a>
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="product">Product</a>
+                <a href="business">Business</a>
+                <a href="company">Company</a>
+                <a href="research" class="active">Research</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="business#contact-sales" class="nav-cta" style="font-size: 0.85rem;">Contact Sales</a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sub-Navigation for Research Sections -->
+    <nav class="subnav-bar" aria-label="Research subsections">
+        <div class="container subnav-container">
+            <a href="#overview" class="subnav-link active">Foundations</a>
+            <a href="#core-stack" class="subnav-link">Stack Research</a>
+            <a href="#frontiers" class="subnav-link">Research Areas</a>
+            <a href="#philosophy" class="subnav-link">Methodology &amp; Question</a>
+        </div>
+    </nav>
+
+    <main id="research-tab-root">
+        <!-- =============================================================
+             1. TAB: FOUNDATIONS & OVERVIEW
+             ============================================================= -->
+        <div id="overview" class="tab-panel active">
+            <!-- Hero -->
+            <section class="research-hero">
+                <div class="container">
+                    <span class="label-sm">RESEARCH &bull; ORAIN LABS</span>
+                    <h1 class="headline-xl">Building the Foundations of Geometric Intelligence</h1>
+                    <p class="body-lg">
+                        At Orain Labs, research is not separate from the product — it is the foundation of the product. We are researching how machines can understand engineering intent, reason about engineering constraints, represent geometry, construct precise CAD models, and interact with complex engineering systems.
+                    </p>
+                    <div style="margin-top: 2rem;">
+                        <a href="#core-stack" class="link-cta link-tab">Explore Specialized Technology Research &rarr;</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Foundation Statement & Interconnected Pipeline -->
+            <section class="section-block reveal">
+                <div class="container">
+                    <div class="statement-card">
+                        <div>
+                            <span class="label-sm" style="color: var(--text-primary);">CORE PREMISE</span>
+                            <p class="question-lead">
+                                "Our research spans multiple layers of the ORAIN technology stack, each addressing a fundamental challenge in building an intelligent engineering system."
+                            </p>
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 4rem;">
+                        <span class="label-sm">THE CONTINUOUS RESEARCH PIPELINE</span>
+                        <h2 class="headline-md">How the Research Connects</h2>
+                        <p class="body-lg">
+                            These research areas are deeply connected. Engineering reasoning determines what should be built. The Geometric Engine determines how that intent should be represented geometrically. ORAIN Forge determines how that geometric plan becomes precise geometry. VSE determines how the resulting geometry and design state are represented to the engineer.
+                        </p>
+
+                        <!-- Pipeline Strip -->
+                        <div class="pipeline-strip">
+                            <div class="pipeline-step"><span>01</span> Intent</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>02</span> ERE (Reasoning)</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>03</span> Geometric Engine (Planning)</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>04</span> ORAIN Forge (Construction)</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>05</span> VSE (Visualization)</div>
+                        </div>
+
+                        <p class="body-md" style="margin-top: 1.8rem;">
+                            Through PAXX 1.0, these research capabilities can ultimately be exposed to external applications and engineering systems.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             2. TAB: CORE STACK RESEARCH (ERE, GEOMETRIC ENGINE, FORGE, VSE)
+             ============================================================= -->
+        <div id="core-stack" class="tab-panel">
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">SPECIALIZED INTELLIGENCE LAYERS</span>
+                    <h2 class="headline-md">Specialized Technology Research</h2>
+                    <p class="body-lg">
+                        Deep research into the specialized layers that power the ORAIN Geometric Intelligence architecture.
+                    </p>
+
+                    <div class="cards-grid-2">
+                        <!-- 01 ERE -->
+                        <div class="research-card">
+                            <div>
+                                <span class="badge-mono">01 // REASONING LAYER</span>
+                                <h3 class="headline-sm">Engineering Reasoning Engine</h3>
+                                <p class="body-md">
+                                    A component may have thousands of geometric configurations, but only some satisfy intended engineering requirements. ERE is our research into teaching machines to reason about engineering intent and design decisions.
+                                </p>
+                                <ul class="spec-list">
+                                    <li>Engineering intent interpretation</li>
+                                    <li>Constraint reasoning &amp; dimensional relationships</li>
+                                    <li>Feature dependencies &amp; design feasibility</li>
+                                    <li>Geometric and engineering consistency</li>
+                                    <li>Design validation &amp; decision-making</li>
+                                </ul>
+                            </div>
+                            <div class="focus-tag">RESEARCH FOCUS: ENGINEERING INTELLIGENCE</div>
+                        </div>
+
+                        <!-- 02 Geometric Engine -->
+                        <div class="research-card">
+                            <div>
+                                <span class="badge-mono">02 // PLANNING LAYER</span>
+                                <h3 class="headline-sm">Geometric Engine</h3>
+                                <p class="body-md">
+                                    Engineering geometry is a structured system of features, dimensions, constraints, relationships, and dependencies. The Geometric Engine represents and plans this structure computationally.
+                                </p>
+                                <ul class="spec-list">
+                                    <li>Feature-based geometric representations</li>
+                                    <li>Parametric design structures &amp; feature graphs</li>
+                                    <li>Design relationships &amp; geometry planning</li>
+                                    <li>Geometry-to-structure understanding</li>
+                                    <li>Bridge between reasoning and deterministic construction</li>
+                                </ul>
+                            </div>
+                            <div class="focus-tag">RESEARCH FOCUS: COMPUTATIONAL GEOMETRY</div>
+                        </div>
+
+                        <!-- 03 ORAIN Forge -->
+                        <div class="research-card">
+                            <div>
+                                <span class="badge-mono">03 // CONSTRUCTION LAYER</span>
+                                <h3 class="headline-sm">ORAIN Forge</h3>
+                                <p class="body-md">
+                                    Reasoning about a design is only useful if it can become precise geometry. Forge explores how structured plans translate into robust CAD geometry using computational geometry and CAD-kernel technology.
+                                </p>
+                                <ul class="spec-list">
+                                    <li>Boundary Representation (B-Rep) geometry</li>
+                                    <li>Solid and surface modeling operations</li>
+                                    <li>Topological consistency &amp; Boolean operations</li>
+                                    <li>Geometry validation &amp; feature execution</li>
+                                    <li>CAD interoperability &amp; engineering-grade generation</li>
+                                </ul>
+                            </div>
+                            <div class="focus-tag">RESEARCH FOCUS: CAD SYSTEMS &amp; KERNEL GEOMETRY</div>
+                        </div>
+
+                        <!-- 04 VSE -->
+                        <div class="research-card">
+                            <div>
+                                <span class="badge-mono">04 // VISUALIZATION LAYER</span>
+                                <h3 class="headline-sm">Visualization Sub-Engine</h3>
+                                <p class="body-md">
+                                    Engineering intelligence must ultimately be communicated back to the engineer. VSE provides inspection of generated geometry and design states without burdening reasoning or construction kernels with rendering.
+                                </p>
+                                <ul class="spec-list">
+                                    <li>High-performance geometry visualization</li>
+                                    <li>Interactive 3D representation &amp; inspection</li>
+                                    <li>Design-state &amp; engineering data visualization</li>
+                                    <li>Decoupled rendering pipelines</li>
+                                    <li>Model exploration and state inspection</li>
+                                </ul>
+                            </div>
+                            <div class="focus-tag">RESEARCH FOCUS: ENGINEERING VISUALIZATION</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             3. TAB: BROADER RESEARCH AREAS
+             ============================================================= -->
+        <div id="frontiers" class="tab-panel">
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">EXPANDING THE FRONTIER</span>
+                    <h2 class="headline-md">Broader Research Domains</h2>
+                    <p class="body-lg">
+                        Our work extends beyond individual components into the fundamental disciplines required for Geometric Intelligence.
+                    </p>
+
+                    <div class="cards-grid-4">
+                        <div class="research-card" style="min-height: 240px;">
+                            <div>
+                                <h3 class="headline-sm" style="font-size: 1.1rem;">AI &amp; Engineering Reasoning</h3>
+                                <p class="body-md">Developing systems capable of understanding engineering requirements, constraints, and physical intent.</p>
+                            </div>
+                        </div>
+
+                        <div class="research-card" style="min-height: 240px;">
+                            <div>
+                                <h3 class="headline-sm" style="font-size: 1.1rem;">Computational Geometry</h3>
+                                <p class="body-md">Developing representations and algorithms that allow machines to reason about engineering geometry.</p>
+                            </div>
+                        </div>
+
+                        <div class="research-card" style="min-height: 240px;">
+                            <div>
+                                <h3 class="headline-sm" style="font-size: 1.1rem;">CAD Intelligence</h3>
+                                <p class="body-md">Exploring how artificial intelligence can interact with feature-based and parametric CAD environments.</p>
+                            </div>
+                        </div>
+
+                        <div class="research-card" style="min-height: 240px;">
+                            <div>
+                                <h3 class="headline-sm" style="font-size: 1.1rem;">Geometry Generation</h3>
+                                <p class="body-md">Researching methods for generating precise geometry from structured parameters and natural-language specs.</p>
+                            </div>
+                        </div>
+
+                        <div class="research-card" style="min-height: 240px;">
+                            <div>
+                                <h3 class="headline-sm" style="font-size: 1.1rem;">Geometry Understanding</h3>
+                                <p class="body-md">Exploring how existing CAD models can be interpreted, structured, and transformed into machine representations.</p>
+                            </div>
+                        </div>
+
+                        <div class="research-card" style="min-height: 240px;">
+                            <div>
+                                <h3 class="headline-sm" style="font-size: 1.1rem;">Validation &amp; Verification</h3>
+                                <p class="body-md">Developing mathematical methods for verifying whether generated geometry is valid and physically consistent.</p>
+                            </div>
+                        </div>
+
+                        <div class="research-card" style="min-height: 240px;">
+                            <div>
+                                <h3 class="headline-sm" style="font-size: 1.1rem;">Engineering Visualization</h3>
+                                <p class="body-md">Building high-performance visual pipelines for representing complex engineering geometry and design states.</p>
+                            </div>
+                        </div>
+
+                        <div class="research-card" style="min-height: 240px;">
+                            <div>
+                                <h3 class="headline-sm" style="font-size: 1.1rem;">AI–CAD Systems</h3>
+                                <p class="body-md">Designing architectures to bridge intelligent reasoning systems with deterministic engineering CAD engines.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- =============================================================
+             4. TAB: METHODOLOGY, BUILDING IN PUBLIC & THE QUESTION
+             ============================================================= -->
+        <div id="philosophy" class="tab-panel">
+            <section class="section-block reveal">
+                <div class="container">
+                    <span class="label-sm">RESEARCH PHILOSOPHY</span>
+                    <h2 class="headline-md">The System Beneath the Interface</h2>
+                    <p class="body-lg">
+                        We believe the hardest problems in engineering AI cannot be solved by simply placing a language model on top of existing CAD software. Engineering requires a unified combination of Reasoning, Geometry, Constraints, Computation, Validation, and Visualization.
+                    </p>
+
+                    <!-- Progression Sequence -->
+                    <div style="margin-top: 4rem;">
+                        <span class="label-sm">OUR SCIENTIFIC PROGRESSION</span>
+                        <div class="pipeline-strip" style="margin-top: 1rem;">
+                            <div class="pipeline-step"><span>01</span> Hypothesis</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>02</span> Architecture</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>03</span> Experiment</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>04</span> Validation</div>
+                            <span class="pipeline-arrow">&rarr;</span>
+                            <div class="pipeline-step"><span>05</span> System</div>
+                        </div>
+                        <p class="body-md" style="margin-top: 1.5rem;">
+                            We build, test, measure, and iterate. Some experiments become production technologies, some reveal limitations, and some lead to entirely new approaches.
+                        </p>
+                    </div>
+
+                    <!-- Building in Public -->
+                    <div style="margin-top: 5rem;">
+                        <span class="label-sm">TRANSPARENCY &amp; COMMUNITY</span>
+                        <h3 class="headline-md">Building in Public</h3>
+                        <p class="body-lg">
+                            We share selected parts of our research journey with the engineering and technology community:
+                        </p>
+
+                        <div class="public-grid">
+                            <div class="public-item">Architecture decisions</div>
+                            <div class="public-item">Technical experiments</div>
+                            <div class="public-item">Research findings</div>
+                            <div class="public-item">Engineering challenges</div>
+                            <div class="public-item">System benchmarks</div>
+                            <div class="public-item">Prototype demonstrations</div>
+                            <div class="public-item">Lessons from failures</div>
+                            <div class="public-item">Development milestones</div>
+                        </div>
+                    </div>
+
+                    <!-- The Long Term Question Card -->
+                    <div class="statement-card" style="margin-top: 5rem;">
+                        <span class="label-sm">THE LONG-TERM QUESTION</span>
+                        <p class="question-lead" style="margin: 1rem 0 1.5rem;">
+                            "Can machines move from understanding what an engineer says to understanding what an engineer means?"
+                        </p>
+                        <p class="body-lg">
+                            Answering that question requires more than a better language model. It requires systems that can reason about engineering intent, geometry, constraints, topology, and physical design relationships. That is the problem we are working to solve.
+                        </p>
+                        <div style="margin-top: 2rem;">
+                            <a href="business#contact-sales" class="link-cta">Collaborate on Engineering Research &rarr;</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">ORAIN LABS</div>
+                    <p>The Geometric Intelligence Company.</p>
+                    <a href="mailto:contact@orainlabs.io" class="footer-email">contact@orainlabs.io</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Products</h4>
+                    <a href="product#orain-forge">Orain Forge</a>
+                    <a href="product#paxx">Paxx 1.0 - API</a>
+                    <a href="product#geometric-engine">Geometric Engine</a>
+                    <a href="product#orain-stack">ORAIN Stack</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="careers" target="_blank" rel="noopener noreferrer">Careers</a>
+                    <a href="company#about">About us</a>
+                    <a href="mailto:contact@orainlabs.io">Support</a>
+                    <a href="#overview" class="link-tab">Research</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Business</h4>
+                    <a href="business#overview">Overview</a>
+                    <a href="business#solutions">Solution</a>
+                    <a href="business#resources">Resources</a>
+                    <a href="business#stories">Engineers stories</a>
+                    <a href="business#contact-sales">Contact sales</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Research</h4>
+                    <a href="#overview" class="link-tab">Foundations</a>
+                    <a href="#core-stack" class="link-tab">Stack Research</a>
+                    <a href="#frontiers" class="link-tab">Research Areas</a>
+                    <a href="#philosophy" class="link-tab">Methodology</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>Orain Labs &copy; 2026</div>
+                <div>Geometric Intelligence for Engineering</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Tab Navigation & Theme Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* 1. Theme Toggle */
+            const themeBtn = document.getElementById('theme-toggle');
+            const sunIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>`;
+            const moonIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>`;
+
+            themeBtn.addEventListener('click', () => {
+                document.body.classList.toggle('light-mode');
+                themeBtn.innerHTML = document.body.classList.contains('light-mode') ? moonIcon : sunIcon;
+            });
+
+            /* 2. Tab Section Switching System */
+            const tabPanels = document.querySelectorAll('.tab-panel');
+            const subnavLinks = document.querySelectorAll('.subnav-link');
+            const tabTriggerLinks = document.querySelectorAll('a[href^="#"]');
+
+            function triggerReveals(panel) {
+                const reveals = panel.querySelectorAll('.reveal');
+                reveals.forEach(el => el.classList.add('visible'));
+            }
+
+            function activateTab(tabId, updateHash = true) {
+                const cleanId = tabId.replace('#', '');
+                const targetPanel = document.getElementById(cleanId);
+                
+                if (!targetPanel || !targetPanel.classList.contains('tab-panel')) return;
+
+                tabPanels.forEach(panel => panel.classList.remove('active'));
+                targetPanel.classList.add('active');
+                triggerReveals(targetPanel);
+
+                subnavLinks.forEach(link => {
+                    if (link.getAttribute('href') === `#${cleanId}`) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                if (updateHash) {
+                    history.pushState(null, '', `#${cleanId}`);
+                }
+            }
+
+            tabTriggerLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    const targetId = link.getAttribute('href');
+                    if (targetId && targetId.startsWith('#') && targetId.length > 1) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement && targetElement.classList.contains('tab-panel')) {
+                            e.preventDefault();
+                            activateTab(targetId);
+                        }
+                    }
+                });
+            });
+
+            const currentHash = window.location.hash;
+            if (currentHash && document.querySelector(currentHash)?.classList.contains('tab-panel')) {
+                activateTab(currentHash, false);
+            } else {
+                activateTab('overview', false);
+            }
+
+            window.addEventListener('popstate', () => {
+                const hash = window.location.hash || '#overview';
+                activateTab(hash, false);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,2518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>Careers | Orains</title>
+    
+    <link rel="icon" type="image/png" href="Olabs/content/orainlabs-logo.png">
+    <link rel="apple-touch-icon" href="Olabs/content/orainlabs-logo.png">
+    
+    <meta name="description" content="Join Orains at the intersection of AI, computational geometry, engineering and design. Build systems that reason about and generate engineering geometry.">
+    <meta name="keywords" content="Orains Careers, Geometric Intelligence, CAD AI, Computational Geometry, Deep Tech Jobs">
+
+    <!-- Typography: Instrument Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* =====================================================================
+           1. CORE DESIGN TOKENS & VARIABLES
+           ===================================================================== */
+        :root {
+            --bg-base: #0a0a0a;
+            --bg-base-rgb: 10, 10, 10;
+            --bg-soft: #141414;
+            --bg-surface: #1c1c1c;
+
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #666666;
+
+            --line: #2a2a2a;
+            --line-light: #1a1a1a;
+
+            --font-sans: 'Instrument Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --nav-height: 80px;
+            --radius-sm: 4px;
+            --radius-md: 6px;
+        }
+
+        body.light-mode {
+            --bg-base: #ffffff;
+            --bg-base-rgb: 255, 255, 255;
+            --bg-soft: #fcfcfc;
+            --bg-surface: #f5f5f4;
+
+            --text-primary: #000000;
+            --text-secondary: #555555;
+            --text-muted: #888888;
+
+            --line: #e5e5e5;
+            --line-light: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes siteFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes blurReveal {
+            0% { 
+                opacity: 0; 
+                filter: blur(14px); 
+                transform: scale(0.98) translateY(14px); 
+            }
+            100% { 
+                opacity: 1; 
+                filter: blur(0); 
+                transform: scale(1) translateY(0); 
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-sans);
+            font-size: 16px;
+            overflow-x: hidden;
+        }
+
+        body {
+            background: var(--bg-base);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            animation: siteFadeIn 1.2s ease-out forwards;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: opacity 0.2s ease, color 0.2s ease;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 1px solid var(--text-primary);
+            outline-offset: 3px;
+        }
+
+        /* =====================================================================
+           2. TYPOGRAPHY & UTILITIES
+           ===================================================================== */
+        .container {
+            width: min(1320px, calc(100% - 4rem));
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .label-sm {
+            display: inline-block;
+            margin-bottom: 1.5rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 500;
+        }
+
+        .headline-xl {
+            color: var(--text-primary);
+            font-size: clamp(2.4rem, 5.2vw, 4.8rem);
+            font-weight: 500;
+            letter-spacing: -0.04em;
+            line-height: 1.06;
+            margin-bottom: 1.5rem;
+        }
+
+        .headline-md {
+            max-width: 840px;
+            color: var(--text-primary);
+            font-size: clamp(2rem, 3.8vw, 3.4rem);
+            font-weight: 500;
+            letter-spacing: -0.03em;
+            line-height: 1.12;
+            margin-bottom: 1.25rem;
+        }
+
+        .body-lg {
+            max-width: 640px;
+            color: var(--text-secondary);
+            font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+            font-weight: 400;
+            line-height: 1.65;
+        }
+
+        .body-md {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .link-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding-bottom: 4px;
+            border-bottom: 1px solid var(--text-primary);
+            cursor: pointer;
+        }
+
+        .link-cta:hover {
+            opacity: 0.65;
+        }
+
+        .link-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding-bottom: 4px;
+            border-bottom: 1px solid transparent;
+        }
+
+        .link-secondary:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .apple-blur {
+            opacity: 0;
+            animation: blurReveal 1.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation-delay: 0.15s;
+        }
+
+        .section-divider {
+            border-top: 1px solid var(--line-light);
+        }
+
+        /* =====================================================================
+           3. NAVIGATION
+           ===================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            height: var(--nav-height);
+            z-index: 100;
+            background: rgba(var(--bg-base-rgb), 0.78);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.4s ease, background-color 0.3s ease;
+        }
+
+        header.scrolled {
+            border-bottom-color: var(--line);
+        }
+
+        .nav-container {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .logo-badge {
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--text-muted);
+            border: 1px solid var(--line);
+            padding: 0.15rem 0.4rem;
+            border-radius: 3px;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            font-weight: 400;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+        }
+
+        .nav-cta {
+            color: var(--text-primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid var(--text-primary);
+        }
+
+        .theme-toggle-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            transition: opacity 0.2s ease, background-color 0.2s ease;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            padding: 8px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            border-radius: 50%;
+        }
+
+        .mobile-menu-btn .menu-bar {
+            width: 18px;
+            height: 1.5px;
+            background-color: var(--text-primary);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        }
+
+        .mobile-menu-btn.active .menu-bar:nth-child(1) {
+            transform: translateY(3.25px) rotate(45deg);
+        }
+
+        .mobile-menu-btn.active .menu-bar:nth-child(2) {
+            transform: translateY(-3.25px) rotate(-45deg);
+        }
+
+        .mobile-menu-drawer {
+            position: fixed;
+            top: var(--nav-height);
+            left: 0;
+            width: 100%;
+            height: calc(100vh - var(--nav-height));
+            height: calc(100dvh - var(--nav-height));
+            background: rgba(var(--bg-base-rgb), 0.96);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--line);
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-8px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            z-index: 99;
+            overscroll-behavior-y: contain;
+        }
+
+        .mobile-menu-drawer.open {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .mobile-drawer-inner {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 3rem 0 4rem;
+        }
+
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+
+        .mobile-link {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .mobile-link .mono-num {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* =====================================================================
+           4. HERO & SECTIONS
+           ===================================================================== */
+        .hero {
+            position: relative;
+            min-height: 85vh;
+            min-height: 85dvh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: var(--nav-height);
+            padding-bottom: 4rem;
+            background: var(--bg-base);
+            overflow: hidden;
+        }
+
+        .hero-centered-content {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 5;
+        }
+
+        .hero-secondary-line {
+            font-family: var(--font-mono);
+            font-size: clamp(0.85rem, 1.1vw, 0.95rem);
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+            max-width: 680px;
+            margin: 0 auto 3rem;
+        }
+
+        .hero-cta-group {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-problem {
+            padding: 8rem 0;
+            background: var(--bg-soft);
+        }
+
+        .problem-manifesto {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: flex-start;
+            margin-bottom: 5rem;
+        }
+
+        .manifesto-text p {
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+
+        .manifesto-text p strong {
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .manifesto-callout {
+            border-left: 2px solid var(--text-primary);
+            padding: 1.5rem 0 1.5rem 1.8rem;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            line-height: 1.65;
+            background: rgba(var(--bg-base-rgb), 0.4);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+        }
+
+        .progression-pipeline {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1.2rem;
+            position: relative;
+            margin-top: 3rem;
+        }
+
+        .pipeline-card {
+            background: var(--bg-base);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 1.8rem 1.2rem;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .pipeline-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--text-secondary);
+        }
+
+        .pipeline-step-num {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .pipeline-title {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+        }
+
+        .pipeline-desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .pipeline-arrow {
+            position: absolute;
+            right: -0.8rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            z-index: 2;
+        }
+
+        .section-frontier {
+            padding: 8rem 0;
+            background: var(--bg-base);
+        }
+
+        .frontier-pipeline-box {
+            margin-top: 3.5rem;
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 3rem 2.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .frontier-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: relative;
+        }
+
+        .flow-node {
+            background: var(--bg-base);
+            border: 1px solid var(--line);
+            padding: 1rem 1.4rem;
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            letter-spacing: 0.04em;
+            text-align: center;
+            flex: 1;
+            min-width: 170px;
+        }
+
+        .flow-node.highlight {
+            border-color: var(--text-secondary);
+            background: var(--bg-surface);
+        }
+
+        .flow-divider {
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        .keyword-cluster {
+            margin-top: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .kw-badge {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            padding: 0.4rem 0.85rem;
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 3px;
+            color: var(--text-secondary);
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .kw-badge:hover {
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+        }
+
+        .section-culture {
+            padding: 8rem 0;
+            background: var(--bg-soft);
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .principle-box {
+            background: var(--bg-base);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 2.2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 220px;
+        }
+
+        .principle-num {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+
+        .principle-box h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+        }
+
+        .principle-box p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        .section-how-we-work-inline {
+            margin-top: 5rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--line);
+        }
+
+        .work-style-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .work-col {
+            border-left: 1px solid var(--line);
+            padding-left: 1.5rem;
+        }
+
+        .work-col h4 {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--text-primary);
+            margin-bottom: 0.6rem;
+            text-transform: uppercase;
+        }
+
+        .work-col p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.55;
+        }
+
+        /* =====================================================================
+           5. SECTION: OPEN POSITIONS (BUILD WITH US.)
+           ===================================================================== */
+        .section-positions {
+            padding: 8rem 0;
+            background: var(--bg-base);
+        }
+
+        .positions-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .btn-view-all-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.65rem 1.3rem;
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.25s ease;
+        }
+
+        .btn-view-all-hero:hover {
+            background: var(--bg-surface);
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .positions-filter-bar {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            margin-bottom: 2.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .filter-pill {
+            background: transparent;
+            border: 1px solid var(--line);
+            padding: 0.45rem 1rem;
+            border-radius: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .filter-pill:hover,
+        .filter-pill.active {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+            background: var(--bg-surface);
+        }
+
+        .jobs-list {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid var(--line);
+        }
+
+        .job-row {
+            display: grid;
+            grid-template-columns: 2fr 1.2fr 1fr 1fr 40px;
+            align-items: center;
+            padding: 1.8rem 1rem;
+            border-bottom: 1px solid var(--line);
+            cursor: pointer;
+            transition: background-color 0.2s ease, padding-left 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .job-row:hover {
+            background-color: var(--bg-soft);
+            padding-left: 1.5rem;
+        }
+
+        .job-title {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .job-discipline {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .job-location, .job-type {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .job-action-icon {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            text-align: right;
+            transition: transform 0.2s ease;
+        }
+
+        .job-row:hover .job-action-icon {
+            transform: translateX(4px);
+            color: var(--text-primary);
+        }
+
+        .jobs-bottom-cta {
+            margin-top: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.2rem 1.5rem;
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+        }
+
+        .jobs-bottom-count {
+            font-family: var(--font-mono);
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+        }
+
+        .loading-state, .error-state {
+            padding: 3rem 0;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* =====================================================================
+           6. DEDICATED FULL DIRECTORY VIEW: "CAREERS AT Orains"
+           ==================================================================== */
+        .all-careers-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg-base);
+            z-index: 180;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .all-careers-overlay.active {
+            display: block;
+        }
+
+        .all-careers-container {
+            width: min(1320px, calc(100% - 4rem));
+            margin: 0 auto;
+            padding: 4rem 0 6rem;
+        }
+
+        .directory-header {
+            margin-bottom: 3.5rem;
+        }
+
+        .directory-title {
+            font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+            font-weight: 500;
+            letter-spacing: -0.035em;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .directory-subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 680px;
+        }
+
+        /* Filter & Search Bar Box */
+        .directory-controls {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            padding: 1.8rem;
+            margin-bottom: 3rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr auto;
+            gap: 1.2rem;
+            align-items: center;
+        }
+
+        .search-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input-wrap input {
+            width: 100%;
+            background: var(--bg-base);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem 0.85rem 2.8rem;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 0.92rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .search-input-wrap input:focus {
+            border-color: var(--text-primary);
+        }
+
+        .search-icon-svg {
+            position: absolute;
+            left: 1rem;
+            width: 18px;
+            height: 18px;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .directory-select {
+            background: var(--bg-base);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1rem;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+            width: 100%;
+        }
+
+        .directory-select:focus {
+            border-color: var(--text-primary);
+        }
+
+        .directory-select option {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+        }
+
+        .btn-search-exec {
+            background: var(--text-primary);
+            color: var(--bg-base);
+            border: none;
+            border-radius: var(--radius-sm);
+            padding: 0.85rem 1.6rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-search-exec:hover {
+            opacity: 0.85;
+        }
+
+        .directory-meta-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .reset-filters-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0;
+        }
+
+        .reset-filters-btn:hover {
+            color: var(--text-primary);
+        }
+
+        /* =====================================================================
+           7. DEDICATED TAB: 2-SECTION SPLIT VIEW (JD + APPLICATION)
+           ==================================================================== */
+        .job-view-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: var(--bg-base);
+            z-index: 200;
+            overflow-y: auto;
+            display: none;
+        }
+
+        .job-view-overlay.active {
+            display: block;
+        }
+
+        .job-view-container {
+            width: min(1380px, calc(100% - 4rem));
+            margin: 0 auto;
+            padding: 4rem 0 6rem;
+        }
+
+        .job-view-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+            cursor: pointer;
+            border-bottom: 1px solid transparent;
+        }
+
+        .job-view-back:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+        }
+
+        /* 2-Column Split Grid */
+        .job-split-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 4.5rem;
+            align-items: start;
+        }
+
+        /* Section 1: Job Description Column */
+        .job-desc-col {
+            border-right: 1px solid var(--line);
+            padding-right: 4rem;
+        }
+
+        .job-view-meta {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: block;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .job-view-title {
+            font-size: clamp(2.2rem, 3.6vw, 3.2rem);
+            font-weight: 500;
+            letter-spacing: -0.035em;
+            margin-bottom: 1.2rem;
+            color: var(--text-primary);
+            line-height: 1.1;
+        }
+
+        .job-view-oneliner {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .job-view-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .job-view-section h4 {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .job-view-section p, .job-view-section li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.65;
+        }
+
+        .job-view-section ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+
+        .job-view-section ul li {
+            position: relative;
+            padding-left: 1.2rem;
+        }
+
+        .job-view-section ul li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--text-muted);
+        }
+
+        .tag-pill-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .tag-pill {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: 0.35rem 0.7rem;
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: 3px;
+            color: var(--text-primary);
+        }
+
+        /* Section 2: Application Form Column */
+        .job-apply-col {
+            position: sticky;
+            top: 2rem;
+        }
+
+        .apply-header-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 0.4rem;
+        }
+
+        .apply-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-hint {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select,
+        .form-group textarea {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 0.75rem 1rem;
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--text-primary);
+            background-color: var(--bg-surface);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .file-dropzone {
+            border: 1px dashed var(--line);
+            border-radius: var(--radius-sm);
+            padding: 2rem 1.2rem;
+            text-align: center;
+            background: var(--bg-soft);
+            cursor: pointer;
+            transition: border-color 0.2s ease, background-color 0.2s ease;
+            position: relative;
+        }
+
+        .file-dropzone:hover {
+            border-color: var(--text-secondary);
+            background-color: var(--bg-surface);
+        }
+
+        .file-dropzone input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .file-dropzone-label {
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .file-dropzone-sub {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .radio-options-row {
+            display: flex;
+            gap: 2rem;
+            margin-top: 0.3rem;
+        }
+
+        .radio-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .radio-label input[type="radio"] {
+            accent-color: var(--text-primary);
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        .legal-cert-box {
+            background: var(--bg-soft);
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
+            padding: 1.4rem;
+            margin-top: 0.5rem;
+        }
+
+        .legal-cert-text {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .legal-cert-text p + p {
+            margin-top: 0.6rem;
+        }
+
+        .checkbox-label {
+            display: inline-flex;
+            align-items: flex-start;
+            gap: 0.65rem;
+            cursor: pointer;
+            font-size: 0.88rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            accent-color: var(--text-primary);
+            width: 16px;
+            height: 16px;
+            margin-top: 2px;
+            cursor: pointer;
+        }
+
+        .btn-submit-full {
+            background: var(--text-primary);
+            color: var(--bg-base);
+            border: none;
+            padding: 0.9rem 2rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border-radius: var(--radius-sm);
+            transition: opacity 0.2s ease;
+            align-self: flex-start;
+            margin-top: 0.5rem;
+        }
+
+        .btn-submit-full:hover {
+            opacity: 0.85;
+        }
+
+        .btn-submit-full:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* =====================================================================
+           8. FINAL CTA & FOOTER
+           ===================================================================== */
+        .section-cta {
+            padding: 9rem 0;
+            background: var(--bg-soft);
+            border-top: 1px solid var(--line-light);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 860px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cta-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3.5rem;
+        }
+
+        footer {
+            padding: 6rem 0 3rem;
+            background: var(--bg-base);
+            border-top: 1px solid var(--line);
+            font-size: 0.85rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 5rem;
+        }
+
+        .footer-brand {
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+        }
+
+        .footer-brand + p {
+            margin-top: 0.5rem;
+            max-width: 220px;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .footer-email {
+            display: inline-block;
+            margin-top: 1.4rem;
+            color: var(--text-primary);
+            font-weight: 500;
+            border-bottom: 1px solid var(--line);
+            padding-bottom: 2px;
+        }
+
+        .footer-socials {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-top: 1.8rem;
+        }
+
+        .footer-social-link {
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .footer-social-link:hover {
+            color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .footer-social-link svg {
+            width: 17px;
+            height: 17px;
+            display: block;
+        }
+
+        .footer-col {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+        }
+
+        .footer-col h4 {
+            margin-bottom: 0.3rem;
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footer-col a {
+            color: var(--text-secondary);
+            padding: 0.2rem 0;
+        }
+
+        .footer-col a:hover {
+            color: var(--text-primary);
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: var(--text-muted);
+            border-top: 1px solid var(--line-light);
+            padding-top: 2rem;
+            font-size: 0.8rem;
+        }
+
+        /* =====================================================================
+           9. RESPONSIVE BREAKPOINTS
+           ===================================================================== */
+        @media (max-width: 1024px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: flex; }
+            .nav-actions .nav-cta { display: none; }
+            .progression-pipeline { grid-template-columns: repeat(3, 1fr); row-gap: 1.5rem; }
+            .principles-grid { grid-template-columns: repeat(2, 1fr); }
+            .work-style-grid { grid-template-columns: repeat(2, 1fr); }
+            .footer-grid { grid-template-columns: repeat(3, 1fr); }
+            .footer-grid > div:first-child { grid-column: 1 / -1; }
+            .job-split-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .job-desc-col { border-right: none; padding-right: 0; }
+            .job-apply-col { position: static; }
+            .directory-controls { grid-template-columns: 1fr 1fr; }
+            .directory-controls > div:first-child { grid-column: 1 / -1; }
+            .btn-search-exec { grid-column: 1 / -1; }
+        }
+
+        @media (max-width: 768px) {
+            :root { --nav-height: 70px; }
+            .container { width: calc(100% - 2.5rem); }
+            .hero { min-height: 75vh; min-height: 75dvh; }
+            .headline-xl { font-size: clamp(2.2rem, 8.5vw, 3.4rem); }
+            .problem-manifesto { grid-template-columns: 1fr; gap: 2rem; }
+            .progression-pipeline { grid-template-columns: 1fr; }
+            .principles-grid { grid-template-columns: 1fr; }
+            .work-style-grid { grid-template-columns: 1fr; }
+            .job-row { grid-template-columns: 1fr; gap: 0.4rem; padding: 1.5rem 0; }
+            .hero-cta-group, .cta-links { flex-direction: column; gap: 1.5rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column-reverse; align-items: flex-start; gap: 1.2rem; }
+            .radio-options-row { flex-direction: column; gap: 0.8rem; }
+            .directory-controls { grid-template-columns: 1fr; }
+            .jobs-bottom-cta { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal, .apple-blur { 
+                opacity: 1 !important; 
+                filter: none !important; 
+                transform: none !important; 
+                transition: none !important; 
+                animation: none !important; 
+            }
+            html { scroll-behavior: auto; }
+            body { animation: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header id="navbar">
+        <div class="container nav-container">
+            <a href="careers" class="logo">
+                <span>Orains</span>
+                <span class="logo-badge">CAREERS</span>
+            </a>
+            
+            <nav class="nav-links" aria-label="Primary navigation">
+                <a href="#problem">The Problem</a>
+                <a href="#frontier">The Frontier</a>
+                <a href="#culture">Culture</a>
+                <a href="#positions">Open Positions</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#positions" class="nav-cta">Open Roles &rarr;</a>
+                
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+
+                <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu-drawer">
+                    <span class="menu-bar"></span>
+                    <span class="menu-bar"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobile-menu-drawer" class="mobile-menu-drawer" aria-hidden="true">
+            <div class="container mobile-drawer-inner">
+                <nav class="mobile-nav-links">
+                    <a href="#problem" class="mobile-link"><span class="mono-num">01</span> The Problem</a>
+                    <a href="#frontier" class="mobile-link"><span class="mono-num">02</span> The Frontier</a>
+                    <a href="#culture" class="mobile-link"><span class="mono-num">03</span> Culture & Values</a>
+                    <a href="#positions" class="mobile-link"><span class="mono-num">04</span> Open Positions</a>
+                </nav>
+                <div>
+                    <a href="#positions" class="link-cta">View Open Positions &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. HERO SECTION -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-centered-content">
+                    <span class="label-sm reveal">RESEARCH &amp; ENGINEERING RECRUITMENT</span>
+                    <h1 class="headline-xl apple-blur">BUILD THE INTELLIGENCE OF ENGINEERING</h1>
+                    <p class="hero-secondary-line reveal" style="transition-delay: 0.25s;">
+                        Join us at the intersection of AI, geometry, computational engineering and design.
+                    </p>
+                    <div class="hero-cta-group reveal" style="transition-delay: 0.35s;">
+                        <a href="#positions" class="link-cta">VIEW OPEN POSITIONS &rarr;</a>
+                        <a href="#problem" class="link-secondary">EXPLORE THE PROBLEM</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SECTION: THE PROBLEM -->
+        <section id="problem" class="section-problem section-divider reveal">
+            <div class="container">
+                <span class="label-sm">THE FUNDAMENTAL CHALLENGE</span>
+                <h2 class="headline-md">ENGINEERING DOESN'T EXIST IN TOKENS.</h2>
+                
+                <div class="problem-manifesto">
+                    <div class="manifesto-text">
+                        <p>
+                            Today's AI can generate text, images, and code with remarkable fluency. <strong>Engineering is different.</strong>
+                        </p>
+                        <p>
+                            A mechanical part is not merely an image. It contains topology, dimensions, constraints, relationships, manufacturing intent, and physical structure.
+                        </p>
+                        <p>
+                            We are building systems that can reason about all of it.
+                        </p>
+                    </div>
+
+                    <div class="manifesto-callout">
+                        &ldquo;A mechanical part is not merely an image. We are building systems that understand topology, constraints, relationships, and physical manufacturing intent.&rdquo;
+                    </div>
+                </div>
+
+                <div class="progression-pipeline">
+                    <div class="pipeline-card">
+                        <span class="pipeline-step-num">01</span>
+                        <div class="pipeline-title">Language</div>
+                        <div class="pipeline-desc">Engineers express high-level requirements and intent[cite: 1].</div>
+                        <span class="pipeline-arrow">&rarr;</span>
+                    </div>
+                    <div class="pipeline-card">
+                        <span class="pipeline-step-num">02</span>
+                        <div class="pipeline-title">Intent</div>
+                        <div class="pipeline-desc">Decomposition into kinematic goals and structural objectives.</div>
+                        <span class="pipeline-arrow">&rarr;</span>
+                    </div>
+                    <div class="pipeline-card">
+                        <span class="pipeline-step-num">03</span>
+                        <div class="pipeline-title">Constraints</div>
+                        <div class="pipeline-desc">Geometric tolerances, assembly mates, and clearances.</div>
+                        <span class="pipeline-arrow">&rarr;</span>
+                    </div>
+                    <div class="pipeline-card">
+                        <span class="pipeline-step-num">04</span>
+                        <div class="pipeline-title">Topology</div>
+                        <div class="pipeline-desc">Continuous feature graphs and explicit mathematical connectivity.</div>
+                        <span class="pipeline-arrow">&rarr;</span>
+                    </div>
+                    <div class="pipeline-card">
+                        <span class="pipeline-step-num">05</span>
+                        <div class="pipeline-title">Geometry</div>
+                        <div class="pipeline-desc">Exact boundary representation (B-Rep) surfaces and solids.</div>
+                        <span class="pipeline-arrow">&rarr;</span>
+                    </div>
+                    <div class="pipeline-card">
+                        <span class="pipeline-step-num">06</span>
+                        <div class="pipeline-title">Engineering</div>
+                        <div class="pipeline-desc">Validated, production-ready CAD models directly manufacturable.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SECTION: THE TECHNICAL FRONTIER -->
+        <section id="frontier" class="section-frontier section-divider reveal">
+            <div class="container">
+                <span class="label-sm">THE STACK</span>
+                <h2 class="headline-md">THE PROBLEMS ARE THE PRODUCT.</h2>
+                <p class="body-lg">
+                    This is not standard SaaS plumbing. Candidates will build along the frontier connecting foundation models directly to deterministic CAD kernels.
+                </p>
+
+                <div class="frontier-pipeline-box">
+                    <div class="frontier-flow">
+                        <div class="flow-node">AI / FOUNDATION MODELS</div>
+                        <span class="flow-divider">&rarr;</span>
+                        <div class="flow-node highlight">COMPUTATIONAL GEOMETRY (OCCT)</div>
+                        <span class="flow-divider">&rarr;</span>
+                        <div class="flow-node">ENGINEERING REASONING</div>
+                        <span class="flow-divider">&rarr;</span>
+                        <div class="flow-node highlight">GEOMETRIC PLANNING &amp; FEATURE GRAPH</div>
+                        <span class="flow-divider">&rarr;</span>
+                        <div class="flow-node">VALIDATED ENGINEERING OUTPUT</div>
+                    </div>
+                </div>
+
+                <div class="keyword-cluster">
+                    <span class="kw-badge">AI</span>
+                    <span class="kw-badge">LLMs</span>
+                    <span class="kw-badge">Geometry</span>
+                    <span class="kw-badge">Topology</span>
+                    <span class="kw-badge">B-Rep</span>
+                    <span class="kw-badge">Feature Graphs</span>
+                    <span class="kw-badge">Parametric CAD</span>
+                    <span class="kw-badge">OCCT</span>
+                    <span class="kw-badge">Simulation</span>
+                    <span class="kw-badge">C++20</span>
+                    <span class="kw-badge">PyTorch</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SECTION: CULTURE & FIRST PRINCIPLES -->
+        <section id="culture" class="section-culture section-divider reveal">
+            <div class="container">
+                <span class="label-sm">OUR CULTURE</span>
+                <h2 class="headline-md">WE LOOK FOR PEOPLE WHO THINK FROM FIRST PRINCIPLES.</h2>
+                <p class="body-lg">
+                    We avoid generic corporate platitudes. Here is what working here actually demands.
+                </p>
+
+                <div class="principles-grid">
+                    <div class="principle-box">
+                        <span class="principle-num">01</span>
+                        <div>
+                            <h3>Think Deeply.</h3>
+                            <p>You want to understand why something works, not simply make it work.</p>
+                        </div>
+                    </div>
+
+                    <div class="principle-box">
+                        <span class="principle-num">02</span>
+                        <div>
+                            <h3>Cross Boundaries.</h3>
+                            <p>The best problems at ORAIN sit between disciplines.</p>
+                        </div>
+                    </div>
+
+                    <div class="principle-box">
+                        <span class="principle-num">03</span>
+                        <div>
+                            <h3>Build Before Everything is Known.</h3>
+                            <p>Research and engineering happen simultaneously.</p>
+                        </div>
+                    </div>
+
+                    <div class="principle-box">
+                        <span class="principle-num">04</span>
+                        <div>
+                            <h3>Care About Correctness.</h3>
+                            <p>Engineering systems cannot merely produce something that looks right.</p>
+                        </div>
+                    </div>
+
+                    <div class="principle-box">
+                        <span class="principle-num">05</span>
+                        <div>
+                            <h3>Enjoy Hard Problems.</h3>
+                            <p>The difficulty of the problem is part of the attraction.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-how-we-work-inline">
+                    <span class="label-sm">HOW WE WORK</span>
+                    <h3 class="headline-md" style="font-size: clamp(1.6rem, 2.8vw, 2.2rem); margin-bottom: 0.5rem;">RESEARCH IS PART OF ENGINEERING.</h3>
+
+                    <div class="work-style-grid">
+                        <div class="work-col">
+                            <h4>Small Teams. Hard Problems.</h4>
+                            <p>People own meaningful technical problems rather than tiny isolated tasks.</p>
+                        </div>
+                        <div class="work-col">
+                            <h4>Research + Building.</h4>
+                            <p>Ideas are tested through prototypes, experiments, and actual production systems.</p>
+                        </div>
+                        <div class="work-col">
+                            <h4>Technical Depth.</h4>
+                            <p>Understanding the underlying mathematical and physical system matters.</p>
+                        </div>
+                        <div class="work-col">
+                            <h4>Fast Experiments.</h4>
+                            <p>Exploration can be fast; engineering output must be rigorous and reliable.</p>
+                        </div>
+                        <div class="work-col">
+                            <h4>Low Ego.</h4>
+                            <p>Good ideas win because they are mathematically and physically sound.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SECTION: OPEN POSITIONS (BUILD WITH US.) -->
+        <section id="positions" class="section-positions section-divider reveal">
+            <div class="container">
+                <span class="label-sm">OPEN ROLES</span>
+                
+                <div class="positions-header-row">
+                    <div>
+                        <h2 class="headline-md" style="margin-bottom: 0.8rem;">BUILD WITH US.</h2>
+                        <p class="body-lg">
+                            Featured opportunities across computational geometry, AI, and kernel infrastructure.
+                        </p>
+                    </div>
+                    <div>
+                        <!-- VIEW ALL BUTTON: Opens dedicated full directory in a new tab -->
+                        <a href="?view=all" target="_blank" rel="noopener noreferrer" class="btn-view-all-hero">
+                            <span>View all positions</span>
+                            <span>&rarr;</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="positions-filter-bar" id="filter-bar">
+                    <button class="filter-pill active" data-filter="all">All Roles</button>
+                </div>
+
+                <!-- Maximum 5 Positions Rendered Here on Landing Page -->
+                <div class="jobs-list" id="jobs-container">
+                    <div class="loading-state">Fetching open positions...</div>
+                </div>
+
+                <!-- Bottom CTA Card if there are more positions -->
+                <div class="jobs-bottom-cta" id="jobs-bottom-cta" style="display: none;">
+                    <span class="jobs-bottom-count" id="jobs-bottom-count">Showing 5 featured roles.</span>
+                    <a href="?view=all" target="_blank" rel="noopener noreferrer" class="link-cta">View All Positions &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. FINAL CTA -->
+        <section class="section-cta reveal">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="headline-md">BUILD WHAT ENGINEERING COMPUTERS COULDN'T UNDERSTAND BEFORE.</h2>
+                    <p class="body-lg">
+                        We're building the next layer of intelligence for engineering.
+                    </p>
+                    <div class="cta-links">
+                        <a href="?view=all" target="_blank" rel="noopener noreferrer" class="link-cta">EXPLORE ALL POSITIONS &rarr;</a>
+                        <a href="mailto:careers@orainlabs.io" class="link-secondary">SEND US YOUR WORK &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- DEDICATED FULL DIRECTORY VIEW: "CAREERS AT Orains" (Loaded via ?view=all in new tab) -->
+    <div class="all-careers-overlay" id="all-careers-overlay">
+        <div class="all-careers-container">
+            <a href="careers" class="job-view-back" id="dir-back-btn">&larr; Back to Main Site</a>
+            
+            <div class="directory-header">
+                <span class="label-sm">OPPORTUNITIES &amp; ROLES</span>
+                <h1 class="directory-title">Careers at Orains</h1>
+                <p class="directory-subtitle">
+                    Search and filter across all engineering, research, and design positions building foundation models for deterministic engineering.
+                </p>
+            </div>
+
+            <!-- SEARCH, TEAM FILTER & LOCATION FILTER CONTROLS -->
+            <div class="directory-controls">
+                <div class="search-input-wrap">
+                    <svg class="search-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="dir-search-input" placeholder="Search positions by keyword, title, or skills..." autocomplete="off">
+                </div>
+
+                <div>
+                    <select id="dir-team-filter" class="directory-select" aria-label="Filter by Team">
+                        <option value="all">All Teams</option>
+                    </select>
+                </div>
+
+                <div>
+                    <select id="dir-location-filter" class="directory-select" aria-label="Filter by Location">
+                        <option value="all">All Locations</option>
+                    </select>
+                </div>
+
+                <button id="dir-search-btn" class="btn-search-exec" type="button">Search Roles</button>
+            </div>
+
+            <div class="directory-meta-info">
+                <div id="dir-results-count">Showing open positions...</div>
+                <button class="reset-filters-btn" id="dir-reset-btn" type="button">Reset Filters</button>
+            </div>
+
+            <!-- ALL AVAILABLE JOBS LISTING -->
+            <div class="jobs-list" id="dir-jobs-container">
+                <div class="loading-state">Loading positions...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DEDICATED TAB: 2-SECTION SPLIT VIEW (JOB DESCRIPTION & APPLICATION) -->
+    <div class="job-view-overlay" id="job-view-overlay">
+        <div class="job-view-container">
+            <a href="javascript:void(0)" class="job-view-back" id="job-view-back-btn">&larr; Back to Careers</a>
+            
+            <div class="job-split-grid">
+                <!-- SECTION 1: JOB DESCRIPTION -->
+                <div class="job-desc-col">
+                    <span class="label-sm" style="margin-bottom: 0.8rem;">JOB SPECIFICATION</span>
+                    <span class="job-view-meta" id="jv-discipline-loc"></span>
+                    <h1 class="job-view-title" id="jv-title"></h1>
+                    <p class="job-view-oneliner" id="jv-oneliner"></p>
+
+                    <div class="job-view-section" id="jv-about-section">
+                        <h4>About The Role</h4>
+                        <p id="jv-problem"></p>
+                    </div>
+
+                    <div class="job-view-section" id="jv-resp-section">
+                        <h4>Responsibilities</h4>
+                        <ul id="jv-responsibilities"></ul>
+                    </div>
+
+                    <div class="job-view-section" id="jv-req-section">
+                        <h4>Required Skills</h4>
+                        <ul id="jv-requirements"></ul>
+                    </div>
+
+                    <div class="job-view-section" id="jv-pref-section" style="display: none;">
+                        <h4>Preferred Qualifications</h4>
+                        <ul id="jv-preferred"></ul>
+                    </div>
+
+                    <div class="job-view-section" id="jv-background-section" style="display: none;">
+                        <h4>Preferred Background</h4>
+                        <div class="tag-pill-container" id="jv-background-tags"></div>
+                    </div>
+
+                    <div class="job-view-section" id="jv-tech-section" style="display: none;">
+                        <h4>Tech Stack</h4>
+                        <div class="tag-pill-container" id="jv-tech-tags"></div>
+                    </div>
+                </div>
+
+                <!-- SECTION 2: APPLICATION FORM -->
+                <div class="job-apply-col">
+                    <span class="label-sm" style="margin-bottom: 0.8rem;">APPLICATION FORM</span>
+                    <h3 class="apply-header-title">Apply for this position</h3>
+                    <p class="body-md">Submit your credentials and past technical work.</p>
+
+                    <form class="apply-form" id="careers-application-form">
+                        <!-- Hidden inputs for role mapping -->
+                        <input type="hidden" name="role_id" id="form-role-id">
+                        <input type="hidden" name="job_title" id="form-job-title">
+                        <input type="hidden" name="job_category" id="form-job-category">
+
+                        <!-- Legal Name -->
+                        <div class="form-group">
+                            <label for="app-legal-name">Legal Name *</label>
+                            <span class="form-hint">Please enter your legal name exactly as shown on your government-issued ID. This helps keep records accurate for later hiring steps.</span>
+                            <input type="text" id="app-legal-name" name="legal_name" required placeholder="First and Last Name">
+                        </div>
+
+                        <!-- Preferred Name -->
+                        <div class="form-group">
+                            <label for="app-preferred-name">Preferred Name (if applicable)</label>
+                            <input type="text" id="app-preferred-name" name="preferred_name" placeholder="Preferred Name">
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group">
+                            <label for="app-email">Email *</label>
+                            <input type="email" id="app-email" name="email" required placeholder="your.email@example.com">
+                        </div>
+
+                        <!-- Resume Upload -->
+                        <div class="form-group">
+                            <label>Resume *</label>
+                            <div class="file-dropzone" id="file-dropzone">
+                                <input type="file" id="app-resume" name="resume_file" accept=".pdf,.doc,.docx" required>
+                                <div class="file-dropzone-label">Upload File</div>
+                                <div class="file-dropzone-sub">or drag and drop here (PDF, DOCX up to 10MB)</div>
+                                <div id="file-chosen-text" style="margin-top: 0.6rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-primary); display: none;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Phone Number -->
+                        <div class="form-group">
+                            <label for="app-phone">Phone Number *</label>
+                            <input type="tel" id="app-phone" name="phone" required placeholder="+1 (555) 000-0000">
+                        </div>
+
+                        <!-- Location -->
+                        <div class="form-group">
+                            <label for="app-location">Where are you currently located? *</label>
+                            <input type="text" id="app-location" name="location" required placeholder="City, Country">
+                        </div>
+
+                        <!-- Start Date -->
+                        <div class="form-group">
+                            <label for="app-start-date">When can you start a new role? *</label>
+                            <input type="text" id="app-start-date" name="start_date" required placeholder="e.g. Immediately, 2 weeks, Month/Year">
+                        </div>
+
+                        <!-- Work Authorization -->
+                        <div class="form-group">
+                            <label>Are you authorized to work in the country where the job is located? *</label>
+                            <div class="radio-options-row">
+                                <label class="radio-label">
+                                    <input type="radio" name="work_auth" value="Yes" required> Yes
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="work_auth" value="No" required> No
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Local Office -->
+                        <div class="form-group">
+                            <label>Are you able to work from a local office three days per week? *</label>
+                            <div class="radio-options-row">
+                                <label class="radio-label">
+                                    <input type="radio" name="local_office" value="Yes" required> Yes
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="local_office" value="No" required> No
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Visa Sponsorship -->
+                        <div class="form-group">
+                            <label>Will you now or in the future require sponsorship for employment visa status in this country? *</label>
+                            <span class="form-hint">We may provide immigration and sponsorship support to new employees based on their unique circumstances.</span>
+                            <div class="radio-options-row">
+                                <label class="radio-label">
+                                    <input type="radio" name="visa_sponsorship" value="Yes" required> Yes
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="visa_sponsorship" value="No" required> No
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Additional Information -->
+                        <div class="form-group">
+                            <label for="app-additional-info">Additional Information</label>
+                            <span class="form-hint">Please share anything else you want us to know, such as your motivation to apply or additional context for your application.</span>
+                            <textarea id="app-additional-info" name="additional_info" placeholder="Share your technical motivation or projects you have researched..."></textarea>
+                        </div>
+
+                        <!-- Certification Block -->
+                        <div class="legal-cert-box">
+                            <div class="legal-cert-text">
+                                <p>I hereby certify that I have not knowingly withheld any information that might adversely affect my chances for employment and that the answers given by me are true and correct to the best of my knowledge. I further certify that I, the undersigned applicant, have personally completed this application. I understand that, to the extent permitted by applicable law, any omission or misstatement of material fact on this application or on any document used to secure employment shall be grounds for rejection of this application or for immediate discharge if I am employed, regardless of the time elapsed before discovery.</p>
+                                <p>Orains is not seeking, nor should you disclose, any information that may be subject to confidentiality obligations to third parties, including but not limited to, your current employer.</p>
+                            </div>
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="cert_confirm" id="app-cert-confirm" required>
+                                <span>I confirm I have read the above. *</span>
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn-submit-full" id="submit-btn">Submit Application &rarr;</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="footer-brand">Orains</div>
+                    <p>The Geometric Intelligence Company.</p>
+                    <a href="mailto:careers@orainlabs.io" class="footer-email">careers@orainlabs.io</a>
+                    
+                    <div class="footer-socials" aria-label="Social links">
+                        <a href="mailto:careers@orainlabs.io" class="footer-social-link" aria-label="Email">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/company/orain-labs/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.2a1.64 1.64 0 0 0-1.64 1.64c0 .9.74 1.64 1.64 1.64s1.64-.74 1.64-1.64c0-.9-.74-1.64-1.64-1.64Z"/></svg>
+                        </a>
+                        <a href="https://github.com/Orain-Labs" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="GitHub">
+                            <svg viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Technology</h4>
+                    <a href="research#core-stack">Research Papers</a>
+                    <a href="product#orain-forge">Orain Forge</a>
+                    <a href="product#paxx">Paxx 1.0</a>
+                    <a href="product#reasoning-viz">ERE & VSE</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <a href="#" style="color: var(--text-primary);">Careers</a>
+                    <a href="company#about">About Us</a>
+                    <a href="company#team">Team</a>
+                    <a href="mailto:contact@orainlabs.io">Contact</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <a href="terms-policies">Terms &amp; Policies</a>
+                    <a href="terms-policies#privacy-policy">Privacy Policy</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div>Orains &copy; 2026. All rights reserved.</div>
+                <div>ISO MM &bull; GEOMETRIC ENGINE</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Logic, Remote JSON Data, Filtering & Submission Handler -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const JOBS_JSON_PATH = 'jobs/new-jobs.json';
+            const SUBMIT_ENDPOINT = 'submit-application.php';
+            const MAX_LANDING_POSITIONS = 5;
+            let allJobsData = [];
+
+            /* 1. Theme Toggle Logic */
+            const themeBtn = document.getElementById('theme-toggle');
+            const sunIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>`;
+            const moonIcon = `
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>`;
+
+            if (themeBtn) {
+                themeBtn.addEventListener('click', () => {
+                    document.body.classList.toggle('light-mode');
+                    themeBtn.innerHTML = document.body.classList.contains('light-mode') ? moonIcon : sunIcon;
+                });
+            }
+
+            /* 2. Header Scroll & Mobile Drawer */
+            const header = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                header.classList.toggle('scrolled', window.scrollY > 20);
+            }, { passive: true });
+
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const mobileDrawer = document.getElementById('mobile-menu-drawer');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            const toggleDrawer = (forceClose = false) => {
+                const open = forceClose ? false : !mobileDrawer.classList.contains('open');
+                mobileBtn.classList.toggle('active', open);
+                mobileDrawer.classList.toggle('open', open);
+                document.body.style.overflow = open ? 'hidden' : '';
+            };
+
+            if (mobileBtn && mobileDrawer) {
+                mobileBtn.addEventListener('click', () => toggleDrawer());
+                mobileLinks.forEach(l => l.addEventListener('click', () => toggleDrawer(true)));
+            }
+
+            /* 3. Scroll Reveal Observer */
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+            /* 4. DOM Elements */
+            const jobsContainer = document.getElementById('jobs-container');
+            const filterBar = document.getElementById('filter-bar');
+            const jobsBottomCta = document.getElementById('jobs-bottom-cta');
+            const jobsBottomCount = document.getElementById('jobs-bottom-count');
+            const jobViewOverlay = document.getElementById('job-view-overlay');
+            const jobViewBackBtn = document.getElementById('job-view-back-btn');
+            const appForm = document.getElementById('careers-application-form');
+            const submitBtn = document.getElementById('submit-btn');
+
+            // Directory / View-All Elements
+            const allCareersOverlay = document.getElementById('all-careers-overlay');
+            const dirJobsContainer = document.getElementById('dir-jobs-container');
+            const dirSearchInput = document.getElementById('dir-search-input');
+            const dirTeamFilter = document.getElementById('dir-team-filter');
+            const dirLocationFilter = document.getElementById('dir-location-filter');
+            const dirSearchBtn = document.getElementById('dir-search-btn');
+            const dirResetBtn = document.getElementById('dir-reset-btn');
+            const dirResultsCount = document.getElementById('dir-results-count');
+            const dirBackBtn = document.getElementById('dir-back-btn');
+
+            /* 5. Render Main Filter Pills */
+            const setupFilterPills = (jobs) => {
+                const categories = ['all', ...new Set(jobs.map(j => j.category || j.department).filter(Boolean))];
+                filterBar.innerHTML = '';
+
+                categories.forEach((cat, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = `filter-pill ${index === 0 ? 'active' : ''}`;
+                    btn.dataset.filter = cat;
+                    btn.textContent = cat === 'all' ? `All Roles (${jobs.length})` : `${cat}`;
+                    btn.addEventListener('click', () => {
+                        document.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        renderJobs(cat);
+                    });
+                    filterBar.appendChild(btn);
+                });
+            };
+
+            /* 6. Render Landing Page Job Listings (Max 5 items) */
+            const renderJobs = (selectedCategory = 'all') => {
+                jobsContainer.innerHTML = '';
+                let filtered = selectedCategory === 'all' 
+                    ? allJobsData 
+                    : allJobsData.filter(j => (j.category === selectedCategory || j.department === selectedCategory));
+
+                filtered = filtered.filter(job => !job.status || job.status.toLowerCase() === 'open');
+
+                if (filtered.length === 0) {
+                    jobsContainer.innerHTML = '<div class="loading-state">No open positions found in this category.</div>';
+                    if (jobsBottomCta) jobsBottomCta.style.display = 'none';
+                    return;
+                }
+
+                // Limit display to max 5 positions on landing page
+                const visibleJobs = filtered.slice(0, MAX_LANDING_POSITIONS);
+
+                visibleJobs.forEach(job => {
+                    const row = document.createElement('a');
+                    row.className = 'job-row';
+                    const roleIdentifier = job.slug || job.id;
+                    row.href = `?role=${encodeURIComponent(roleIdentifier)}`;
+                    row.target = '_blank';
+                    row.rel = 'noopener noreferrer';
+
+                    row.innerHTML = `
+                        <div class="job-title">${job.title}</div>
+                        <div class="job-discipline">${job.category || job.department || 'Engineering'}</div>
+                        <div class="job-location">${job.location || 'Remote'}</div>
+                        <div class="job-type">${job.employmentType || 'Full-time'}</div>
+                        <div class="job-action-icon">&rarr;</div>
+                    `;
+                    jobsContainer.appendChild(row);
+                });
+
+                // Display bottom CTA bar if more positions exist
+                if (jobsBottomCta) {
+                    if (filtered.length > MAX_LANDING_POSITIONS) {
+                        jobsBottomCount.textContent = `Showing 5 of ${filtered.length} positions in this view.`;
+                        jobsBottomCta.style.display = 'flex';
+                    } else {
+                        jobsBottomCta.style.display = 'none';
+                    }
+                }
+            };
+
+            /* 7. Setup & Render Full Directory (View All Tab) */
+            const setupDirectoryFilters = (jobs) => {
+                // Team Filter Options
+                const teams = [...new Set(jobs.map(j => j.category || j.department).filter(Boolean))];
+                dirTeamFilter.innerHTML = '<option value="all">All Teams</option>';
+                teams.forEach(t => {
+                    const opt = document.createElement('option');
+                    opt.value = t;
+                    opt.textContent = t;
+                    dirTeamFilter.appendChild(opt);
+                });
+
+                // Location Filter Options
+                const locations = [...new Set(jobs.map(j => j.location).filter(Boolean))];
+                dirLocationFilter.innerHTML = '<option value="all">All Locations</option>';
+                locations.forEach(loc => {
+                    const opt = document.createElement('option');
+                    opt.value = loc;
+                    opt.textContent = loc;
+                    dirLocationFilter.appendChild(opt);
+                });
+            };
+
+            const filterAndRenderDirectory = () => {
+                const searchVal = (dirSearchInput.value || '').trim().toLowerCase();
+                const teamVal = dirTeamFilter.value;
+                const locVal = dirLocationFilter.value;
+
+                // Shows ALL positions that match the search/filters (No 5-item limit)
+                const filtered = allJobsData.filter(job => {
+                    if (job.status && job.status.toLowerCase() !== 'open') return false;
+
+                    // Filter Team
+                    if (teamVal !== 'all' && (job.category || job.department) !== teamVal) {
+                        return false;
+                    }
+
+                    // Filter Location
+                    if (locVal !== 'all' && job.location !== locVal) {
+                        return false;
+                    }
+
+                    // Filter Search Query
+                    if (searchVal) {
+                        const titleMatch = (job.title || '').toLowerCase().includes(searchVal);
+                        const descMatch = (job.summary || job.about || '').toLowerCase().includes(searchVal);
+                        const techMatch = Array.isArray(job.techStack) && job.techStack.some(t => t.toLowerCase().includes(searchVal));
+                        const reqMatch = Array.isArray(job.requiredSkills || job.requirements) && (job.requiredSkills || job.requirements).some(r => r.toLowerCase().includes(searchVal));
+                        
+                        if (!titleMatch && !descMatch && !techMatch && !reqMatch) {
+                            return false;
+                        }
+                    }
+
+                    return true;
+                });
+
+                dirResultsCount.textContent = `Showing ${filtered.length} of ${allJobsData.length} available positions`;
+                dirJobsContainer.innerHTML = '';
+
+                if (filtered.length === 0) {
+                    dirJobsContainer.innerHTML = '<div class="loading-state">No matching positions found. Try broadening your search or resetting filters.</div>';
+                    return;
+                }
+
+                filtered.forEach(job => {
+                    const row = document.createElement('a');
+                    row.className = 'job-row';
+                    const roleIdentifier = job.slug || job.id;
+                    row.href = `?role=${encodeURIComponent(roleIdentifier)}`;
+                    row.target = '_blank';
+                    row.rel = 'noopener noreferrer';
+
+                    row.innerHTML = `
+                        <div class="job-title">${job.title}</div>
+                        <div class="job-discipline">${job.category || job.department || 'Engineering'}</div>
+                        <div class="job-location">${job.location || 'Remote'}</div>
+                        <div class="job-type">${job.employmentType || 'Full-time'}</div>
+                        <div class="job-action-icon">&rarr;</div>
+                    `;
+                    dirJobsContainer.appendChild(row);
+                });
+            };
+
+            // Directory Control Listeners
+            if (dirSearchInput) {
+                dirSearchInput.addEventListener('input', filterAndRenderDirectory);
+                dirSearchInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        filterAndRenderDirectory();
+                    }
+                });
+            }
+
+            if (dirSearchBtn) {
+                dirSearchBtn.addEventListener('click', filterAndRenderDirectory);
+            }
+
+            if (dirTeamFilter) {
+                dirTeamFilter.addEventListener('change', filterAndRenderDirectory);
+            }
+
+            if (dirLocationFilter) {
+                dirLocationFilter.addEventListener('change', filterAndRenderDirectory);
+            }
+
+            if (dirResetBtn) {
+                dirResetBtn.addEventListener('click', () => {
+                    dirSearchInput.value = '';
+                    dirTeamFilter.value = 'all';
+                    dirLocationFilter.value = 'all';
+                    filterAndRenderDirectory();
+                });
+            }
+
+            if (dirBackBtn) {
+                dirBackBtn.addEventListener('click', (e) => {
+                    if (window.opener) {
+                        e.preventDefault();
+                        window.close();
+                    } else {
+                        allCareersOverlay.classList.remove('active');
+                        document.title = "Careers | Orains";
+                    }
+                });
+            }
+
+            /* 8. Populate Split View Overlay */
+            const populateJobView = (job) => {
+                const metaParts = [
+                    job.category || job.department,
+                    job.location,
+                    job.employmentType,
+                    job.experience
+                ].filter(Boolean);
+
+                document.getElementById('jv-discipline-loc').textContent = metaParts.join(' • ');
+                document.getElementById('jv-title').textContent = job.title;
+                document.getElementById('jv-oneliner').textContent = job.summary || job.about || '';
+                document.getElementById('jv-problem').textContent = job.about || job.summary || '';
+
+                // Hidden Form Fields
+                document.getElementById('form-role-id').value = job.slug || job.id;
+                document.getElementById('form-job-title').value = job.title;
+                document.getElementById('form-job-category').value = job.category || job.department || '';
+
+                // Responsibilities
+                const respList = document.getElementById('jv-responsibilities');
+                respList.innerHTML = '';
+                if (job.responsibilities && Array.isArray(job.responsibilities)) {
+                    respList.innerHTML = job.responsibilities.map(r => `<li>${r}</li>`).join('');
+                }
+
+                // Required Skills
+                const reqList = document.getElementById('jv-requirements');
+                reqList.innerHTML = '';
+                const skills = job.requiredSkills || job.requirements || [];
+                if (Array.isArray(skills)) {
+                    reqList.innerHTML = skills.map(r => `<li>${r}</li>`).join('');
+                }
+
+                // Preferred Qualifications
+                const prefSection = document.getElementById('jv-pref-section');
+                const prefList = document.getElementById('jv-preferred');
+                if (job.preferredQualifications && Array.isArray(job.preferredQualifications) && job.preferredQualifications.length > 0) {
+                    prefList.innerHTML = job.preferredQualifications.map(p => `<li>${p}</li>`).join('');
+                    prefSection.style.display = 'block';
+                } else {
+                    prefSection.style.display = 'none';
+                }
+
+                // Preferred Background Tags
+                const bgSection = document.getElementById('jv-background-section');
+                const bgTags = document.getElementById('jv-background-tags');
+                if (job.preferredBackground && Array.isArray(job.preferredBackground) && job.preferredBackground.length > 0) {
+                    bgTags.innerHTML = job.preferredBackground.map(t => `<span class="tag-pill">${t}</span>`).join('');
+                    bgSection.style.display = 'block';
+                } else {
+                    bgSection.style.display = 'none';
+                }
+
+                // Tech Stack Tags
+                const techSection = document.getElementById('jv-tech-section');
+                const techTags = document.getElementById('jv-tech-tags');
+                if (job.techStack && Array.isArray(job.techStack) && job.techStack.length > 0) {
+                    techTags.innerHTML = job.techStack.map(t => `<span class="tag-pill">${t}</span>`).join('');
+                    techSection.style.display = 'block';
+                } else {
+                    techSection.style.display = 'none';
+                }
+
+                jobViewOverlay.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+            };
+
+            /* 9. Load Data & URL Router */
+            const loadPositionsData = async () => {
+                try {
+                    const response = await fetch(JOBS_JSON_PATH);
+                    if (!response.ok) {
+                        throw new Error(`HTTP ${response.status}`);
+                    }
+                    const rawData = await response.json();
+                    allJobsData = Array.isArray(rawData) ? rawData : (rawData.jobs || [rawData]);
+
+                    setupFilterPills(allJobsData);
+                    renderJobs('all');
+                    setupDirectoryFilters(allJobsData);
+
+                    // Check URL Parameters for Routing
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const viewParam = urlParams.get('view');
+                    const roleParam = urlParams.get('role');
+
+                    if (viewParam === 'all') {
+                        document.title = "Careers at Orains";
+                        allCareersOverlay.classList.add('active');
+                        filterAndRenderDirectory();
+                    } else if (roleParam) {
+                        const matched = allJobsData.find(j => (j.slug === roleParam || j.id === roleParam));
+                        if (matched) {
+                            document.title = `${matched.title} | Careers at Orains`;
+                            populateJobView(matched);
+                        }
+                    }
+                } catch (err) {
+                    console.error('Error fetching jobs JSON:', err);
+                    jobsContainer.innerHTML = `<div class="error-state">Unable to load job postings at this time. Please check back shortly or email careers@orainlabs.io.</div>`;
+                    dirJobsContainer.innerHTML = `<div class="error-state">Unable to load job postings at this time.</div>`;
+                }
+            };
+
+            if (jobViewBackBtn) {
+                jobViewBackBtn.addEventListener('click', () => {
+                    if (window.opener) {
+                        window.close();
+                    } else {
+                        jobViewOverlay.classList.remove('active');
+                        window.history.pushState({}, '', window.location.pathname);
+                    }
+                });
+            }
+
+            /* 10. File Upload Feedback */
+            const fileInput = document.getElementById('app-resume');
+            const fileChosenText = document.getElementById('file-chosen-text');
+            if (fileInput && fileChosenText) {
+                fileInput.addEventListener('change', () => {
+                    if (fileInput.files && fileInput.files.length > 0) {
+                        fileChosenText.textContent = `Selected: ${fileInput.files[0].name}`;
+                        fileChosenText.style.display = 'block';
+                    }
+                });
+            }
+
+            /* 11. Form Handler */
+            if (appForm) {
+                appForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = 'Submitting Application...';
+
+                    const formData = new FormData(appForm);
+
+                    try {
+                        const response = await fetch(SUBMIT_ENDPOINT, {
+                            method: 'POST',
+                            body: formData
+                        });
+
+                        const result = await response.json();
+
+                        if (result.success) {
+                            alert('Application submitted successfully! Your submission and resume have been recorded.');
+                            appForm.reset();
+                            if (fileChosenText) fileChosenText.style.display = 'none';
+                        } else {
+                            alert('Submission failed: ' + (result.message || 'Please check all required fields.'));
+                        }
+                    } catch (error) {
+                        console.error('Submission error:', error);
+                        alert('Could not connect to the submission server. Please try again or email careers@orainlabs.io.');
+                    } finally {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Submit Application &rarr;';
+                    }
+                });
+            }
+
+            loadPositionsData();
+        });
+    </script>
+</body>
+</html>

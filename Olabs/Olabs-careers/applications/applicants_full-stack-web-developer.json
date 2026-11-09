@@ -1,0 +1,77 @@
+[
+    {
+        "id": "app_6aea3bba86ba8",
+        "appliedAt": "2026-11-03T19:53:30+00:00",
+        "positionApplied": {
+            "title": "Full Stack Web Developer Intern",
+            "roleId": "full-stack-web-developer",
+            "category": "Software"
+        },
+        "personalDetails": {
+            "legalName": "Saksham arya",
+            "preferredName": "Ishaan",
+            "email": "sakshamarya015@gmail.com",
+            "phone": "8738853746",
+            "location": "Dwarahat",
+            "startDate": "Immediately"
+        },
+        "eligibility": {
+            "authorizedToWork": "Yes",
+            "localOffice3Days": "No",
+            "visaSponsorship": "No"
+        },
+        "additionalInfo": "What drives me to apply is the opportunity to take end-to-end ownership of production features and ship software with immediate user impact. While completing my B.Tech in Computer Science and Engineering (Class of 2027), I have focused heavily on real-world execution across both startup and enterprise environments\u2014serving as a Founding Engineer at Satsearn.app (scaling a Bitcoin Lightning Network platform to over 800 registered users) and Ambee AI, developing production React Native mobile experiences at Fittians, and contributing to international web infrastructure at Edvanta Technologies Pvt. Ltd. Whether winning 1st place at the BrainBytes Hackathon or independently architecting AI and cross-platform applications like Nyay Mitr and Mech-Moto across TypeScript, Next.js, React Native, Node.js, and Python, I thrive in fast-moving teams that value high agency and clean, scalable code. I am excited to bring this zero-to-one builder mindset to your team and start contributing from day one (Portfolio: portfoliotest-two-chi.vercel.app | GitHub: github.com/Sakshamebdev873).",
+        "resumePath": "applications/resumes/full-stack-web-developer/1793735610_6aea3bba867ab_resume__2_.pdf",
+        "confirmedAgreement": true
+    },
+    {
+        "id": "app_6aeaf40f5484b",
+        "appliedAt": "2026-11-04T08:59:59+00:00",
+        "positionApplied": {
+            "title": "Full Stack Web Developer Intern",
+            "roleId": "full-stack-web-developer",
+            "category": "Software"
+        },
+        "personalDetails": {
+            "legalName": "Manjunath G K",
+            "preferredName": "",
+            "email": "manjunathgk146@gmail.com",
+            "phone": "+91 8618545293",
+            "location": "Davanagere Karnataka",
+            "startDate": "Immediately"
+        },
+        "eligibility": {
+            "authorizedToWork": "Yes",
+            "localOffice3Days": "No",
+            "visaSponsorship": "No"
+        },
+        "additionalInfo": "I&#039;m a final-year Computer Science Engineering student with internship experience at TheProfesseer and Infosys Springboard.\r\n\r\nMy primary strength is backend development using Java, Spring Boot, PostgreSQL, and REST APIs. I also have experience building frontend applications using React and JavaScript.\r\n\r\nI&#039;m interested in working on real-world products, improving my full-stack engineering skills, and contributing to Orains&#039; AI-powered engineering software. I enjoy solving technical problems, taking ownership, and learning new technologies.\r\n\r\nGitHub: https://github.com/Manjunath-G-K\r\nPortfolio: https://manjunath-g-k.github.io/",
+        "resumePath": "applications/resumes/full-stack-web-developer/1793782799_6aeaf40f54516_Manju-G-K.pdf",
+        "confirmedAgreement": true
+    },
+    {
+        "id": "app_6aeafdda9ea2c",
+        "appliedAt": "2026-11-04T09:41:46+00:00",
+        "positionApplied": {
+            "title": "Full Stack Web Developer Intern",
+            "roleId": "full-stack-web-developer",
+            "category": "Software"
+        },
+        "personalDetails": {
+            "legalName": "Mohammed Shaaz",
+            "preferredName": "",
+            "email": "shaazney123@gmail.com",
+            "phone": "+916282984460",
+            "location": "india",
+            "startDate": "1  month"
+        },
+        "eligibility": {
+            "authorizedToWork": "Yes",
+            "localOffice3Days": "Yes",
+            "visaSponsorship": "No"
+        },
+        "additionalInfo": "I\u2019m a final-year ECE student at Christ College of Engineering, Kerala (2027 batch), and I want to work on full-stack products where my code reaches real users.\r\n\r\nWhat I bring:\r\n\r\nProduction experience: at ModelSuite.ai I built a full-stack team management portal (Node.js, Express.js, MongoDB, React) and scaled a Python/FastAPI automation platform on 20+ real devices. I spent much of that time debugging silent failures in live systems.\r\nEnd-to-end ownership: I built AutoFlow solo, from the Next.js and React Flow frontend to the FastAPI/Node.js backend, LLM integration, and deployment. I\u2019ve also shipped MotorGuard, a real-time IoT dashboard with 10+ REST endpoints.\r\nReliability habits: I add schema validation, retries, and automated tests so problems surface as visible errors, not silent bugs.\r\nAI-assisted workflow: I use Claude Code and Cursor daily, and I verify what they generate before it ships.\r\n\r\nMy ECE background gives me solid fundamentals in systems, networking, and debugging. The gap I\u2019m still closing is large-scale cloud infrastructure, and I\u2019m learning it. I\u2019m available immediately and happy to do a take-home task or a trial.\r\n\r\nGitHub: github.com/SHXZ7 | Portfolio: shxz7.vercel.app",
+        "resumePath": "applications/resumes/full-stack-web-developer/1793785306_6aeafdda9e608_final_main.pdf",
+        "confirmedAgreement": true
+    }
+]

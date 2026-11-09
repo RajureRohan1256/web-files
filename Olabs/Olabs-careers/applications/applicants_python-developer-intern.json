@@ -1,0 +1,102 @@
+[
+    {
+        "id": "app_6aea38daea5cb",
+        "appliedAt": "2026-11-03T19:41:14+00:00",
+        "positionApplied": {
+            "title": "Python Developer Intern",
+            "roleId": "python-developer-intern",
+            "category": "Software"
+        },
+        "personalDetails": {
+            "legalName": "Shubh patel",
+            "preferredName": "",
+            "email": "shubhpatel915@gmail.com",
+            "phone": "+919165725720",
+            "location": "india",
+            "startDate": "7 days"
+        },
+        "eligibility": {
+            "authorizedToWork": "Yes",
+            "localOffice3Days": "Yes",
+            "visaSponsorship": "No"
+        },
+        "additionalInfo": "",
+        "resumePath": "applications/resumes/python-developer-intern/1793734874_6aea38daea248_shubh_resume_machine_learning.pdf",
+        "confirmedAgreement": true
+    },
+    {
+        "id": "app_6aead00c1ebd0",
+        "appliedAt": "2026-11-04T06:26:20+00:00",
+        "positionApplied": {
+            "title": "Python Developer Intern",
+            "roleId": "python-developer-intern",
+            "category": "Software"
+        },
+        "personalDetails": {
+            "legalName": "Zaira Hussain",
+            "preferredName": "",
+            "email": "zairahussain27@gmail.com",
+            "phone": "+917898220530",
+            "location": "Indore, IND",
+            "startDate": "Immediately"
+        },
+        "eligibility": {
+            "authorizedToWork": "Yes",
+            "localOffice3Days": "Yes",
+            "visaSponsorship": "No"
+        },
+        "additionalInfo": "",
+        "resumePath": "applications/resumes/python-developer-intern/1793773580_6aead00c1e8ae_Zaira_Hussain_Engineer.pdf",
+        "confirmedAgreement": true
+    },
+    {
+        "id": "app_6aead476cce94",
+        "appliedAt": "2026-11-04T06:45:10+00:00",
+        "positionApplied": {
+            "title": "Python Developer Intern",
+            "roleId": "python-developer-intern",
+            "category": "Software"
+        },
+        "personalDetails": {
+            "legalName": "Asma Ashraf",
+            "preferredName": "Asma",
+            "email": "asmaashraf3451@gmail.com",
+            "phone": "92 3018348224",
+            "location": "Pakistan",
+            "startDate": "immediately"
+        },
+        "eligibility": {
+            "authorizedToWork": "Yes",
+            "localOffice3Days": "Yes",
+            "visaSponsorship": "No"
+        },
+        "additionalInfo": "I am a BSCS 2026 graduate from Women University Multan, and I am learning Python and AI automation every day. I built a Travel Agency AI chatbot using RAG (Gemini, Supabase, n8n) and I deployed a small Flask app to PythonAnywhere. I also completed a 3-month PHP internship at ICT Vision. My projects run on localhost, and I am learning error handling and deployment. I am eager to learn and work with a team.\r\n\r\nGitHub: github.com/asma-ashraf",
+        "resumePath": "applications/resumes/python-developer-intern/1793774710_6aead476ccc14_Asma_Ashraf_Resume.pdf",
+        "confirmedAgreement": true
+    },
+    {
+        "id": "app_6aeb1076b93de",
+        "appliedAt": "2026-11-04T11:01:10+00:00",
+        "positionApplied": {
+            "title": "Python Developer Intern",
+            "roleId": "python-developer-intern",
+            "category": "Software"
+        },
+        "personalDetails": {
+            "legalName": "khrish chauhan",
+            "preferredName": "khrish chauhan",
+            "email": "khrishchauhan@gmail.com",
+            "phone": "8287606047",
+            "location": "india",
+            "startDate": "immediately"
+        },
+        "eligibility": {
+            "authorizedToWork": "Yes",
+            "localOffice3Days": "Yes",
+            "visaSponsorship": "Yes"
+        },
+        "additionalInfo": "I am passionate about building practical AI solutions and continuously improving my skills in Machine Learning and Generative AI. I enjoy exploring new technologies, solving real-world problems, and turning ideas into working projects. I am eager to learn from experienced professionals and contribute meaningfully to your team.",
+        "resumePath": "applications/resumes/python-developer-intern/1793790070_6aeb1076b83bc_AimlResume.pdf",
+        "confirmedAgreement": true
+    }
+]
